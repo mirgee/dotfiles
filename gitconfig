@@ -1,0 +1,42 @@
+[user]
+  name = Miroslav Kovar
+  email = miroslavkovar@protonmail.com
+	signingkey = C7D5D13580936D88
+[color]
+  ui = auto
+[alias]
+  aa = add --all
+  co = checkout
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+  pf = !git remote | xargs -L1 git push --force-with-lease
+  st = status
+  rb = rebase
+[core]
+  excludesfile = ~/.gitignore_global
+  autocrlf = input
+  editor = vim
+[fetch]
+  prune = true
+[rebase]
+  autosquash = true
+[rerere]
+  enabled = true
+[push]
+  default = simple
+[filter "lfs"]
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+[log]
+  date = local
+[merge]
+    conflictstyle = diff3
+[interactive]
+    singleKey = true
+[commit]
+	gpgsign = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[gpg]
+    program = gpg2
