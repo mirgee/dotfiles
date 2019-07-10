@@ -1,36 +1,16 @@
 "-------------------------------------------------------------------------------------------"
 "VUNDLE"
 
-set nocompatible
-syntax on
-set number
-set wildmenu
-set scrolloff=3
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set splitbelow
-set showcmd
-set tags=tags
-set viewoptions=cursor,folds,slash,unix
-set foldmethod=indent " Enable folding
-" set foldmethod=manual
-set foldlevel=99
-set ignorecase " Ignore case when searching
-set encoding=utf-8
-set hlsearch
-set guioptions-=T " Remove toolbar in gvim
-set guioptions-=m  "remove menu bar
-set guioptions-=L
-set mouse=a
-set splitbelow
-set splitright
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-filetype off                
-
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
+" let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'terryma/vim-smooth-scroll'
 Plugin 'tmhedberg/SimpylFold'
@@ -39,39 +19,51 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'Valloric/YouCompleteMe' " Python autocomplete
 Plugin 'vim-syntastic/syntastic' " Checking syntax after save
 " Plugin 'nvie/vim-flake8' " PEP 8 checking
-
-" Nerdtree
 Plugin 'scrooloose/nerdtree' " Proper file tree
 " Plugin 'jistr/vim-nerdtree-tabs' " Use nerdtree with tabs
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'kien/ctrlp.vim' " To search any files or tags
 Plugin 'tpope/vim-fugitive' " To perform basic git commands without leaving vim
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " To display virtualenv, git branch, edited files, etc.
-Plugin 'tpope/vim-surround' " Simple parenthizing
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plugin 'tpope/vim-surround'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'editorconfig/editorconfig-vim' " Some automated formatting
-Plugin 'fisadev/vim-isort' " Sorting imports
-Plugin 'majutsushi/tagbar' " Display class definitions etc.
-Plugin 'airblade/vim-gitgutter' " See which lines have been modified in repo
 " Requires installation e.g. with:
 " curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.9.0/ripgrep_0.9.0_amd64.deb
 " sudo dpkg -i ripgrep_0.9.0_amd64.deb
-Plugin 'jremmen/vim-ripgrep' " Search in project
-
+Plugin 'jremmen/vim-ripgrep'
 " Colorschemes
 Plugin 'git://github.com/altercation/vim-colors-solarized.git'
 Plugin 'jnurmine/Zenburn'
 Plugin 'tomasr/molokai'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'fisadev/vim-isort'
+Plugin 'majutsushi/tagbar'
+Plugin 'airblade/vim-gitgutter'
 
-call vundle#end()
-filetype plugin indent on
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
 
 "--------------------------------------------------------------------------------------------"
 "LATEX SUITE"
 
 " REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
 filetype plugin on
+
+" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
+" can be called correctly.
+set shellslash
 
 " IMPORTANT: grep will sometimes skip displaying the file name if you
 " search in a singe file. This will confuse Latex-Suite. Set your grep
@@ -96,7 +88,30 @@ let g:Tex_FoldedEnvironments = 'align,figure,table,dfn,thm'
 
 
 "--------------------------------------------------------------------------------------------"
-"MAPPINGS"
+"OTHER"
+syntax on
+set number
+set wildmenu
+set scrolloff=3
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set splitbelow
+set showcmd
+set tags=tags
+set viewoptions=cursor,folds,slash,unix
+set foldmethod=indent " Enable folding
+" set foldmethod=manual
+set foldlevel=99
+set ignorecase " Ignore case when searching
+set encoding=utf-8
+set hlsearch
+set guioptions-=T " Remove toolbar in gvim
+set guioptions-=m  "remove menu bar
+set guioptions-=L
+set mouse=a
+set splitbelow
+set splitright
 
 " I don't know why this needs to be here
 let &path.="src/include,/usr/include/AL,"
@@ -134,22 +149,22 @@ if has("autocmd")
     \| exe "normal! g'\"" | endif
 endif
 
-"--------------------------------------------------------------------------------------------"
-"PLUGIN SETTINGS"
-
 " To see docstrings for folded code
 let g:SimpylFold_docstring_preview=1
 
+set shiftwidth=0
+set textwidth=0
+set colorcolumn=0
 " For proper PEP8 indentation
-au BufNewFile,BufRead *.py :
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set colorcolumn=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix |
+autocmd BufNewFile,BufRead *.py :
+    \ setlocal tabstop=4 |
+    \ setlocal softtabstop=4 |
+    \ setlocal shiftwidth=4 |
+    \ setlocal textwidth=79 |
+    \ setlocal colorcolumn=79 |
+    \ setlocal expandtab |
+    \ setlocal autoindent |
+    \ setlocal fileformat=unix |
 au BufNewFile,BufRead *.js,*.html,*.css :
     \ set tabstop=2 |
     \ set softtabstop=2 |
