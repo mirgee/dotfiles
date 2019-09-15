@@ -19,27 +19,27 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'Valloric/YouCompleteMe' " Python autocomplete
 Plugin 'vim-syntastic/syntastic' " Checking syntax after save
 " Plugin 'nvie/vim-flake8' " PEP 8 checking
+Plugin 'fisadev/vim-isort' " Sorting python imports
 Plugin 'scrooloose/nerdtree' " Proper file tree
 " Plugin 'jistr/vim-nerdtree-tabs' " Use nerdtree with tabs
-Plugin 'kien/ctrlp.vim' " To search any files or tags
+Plugin 'majutsushi/tagbar' " Seeing classes in files
 Plugin 'tpope/vim-fugitive' " To perform basic git commands without leaving vim
+Plugin 'airblade/vim-gitgutter' " Control git from vim
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " To display virtualenv, git branch, edited files, etc.
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plugin 'tpope/vim-surround'
+Plugin 'Xuyuanp/nerdtree-git-plugin' " To see git status in nerdtree
+Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " To reflect filetype in nerdtree
+Plugin 'tpope/vim-surround' " Handy tool for efficient change of brackets
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'kien/ctrlp.vim' " To search any files or tags
+Plugin 'jremmen/vim-ripgrep' " Grepping through repo
 " Requires installation e.g. with:
 " curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.9.0/ripgrep_0.9.0_amd64.deb
 " sudo dpkg -i ripgrep_0.9.0_amd64.deb
-Plugin 'jremmen/vim-ripgrep'
 " Colorschemes
 Plugin 'git://github.com/altercation/vim-colors-solarized.git'
 Plugin 'jnurmine/Zenburn'
 Plugin 'tomasr/molokai'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'fisadev/vim-isort'
-Plugin 'majutsushi/tagbar'
-Plugin 'airblade/vim-gitgutter'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -101,7 +101,6 @@ set showcmd
 set tags=tags
 set viewoptions=cursor,folds,slash,unix
 set foldmethod=indent " Enable folding
-" set foldmethod=manual
 set foldlevel=99
 set ignorecase " Ignore case when searching
 set encoding=utf-8
@@ -112,6 +111,25 @@ set guioptions-=L
 set mouse=a
 set splitbelow
 set splitright
+set laststatus=2 " Make powerline appear even with one window
+
+set shiftwidth=0
+set textwidth=0
+set colorcolumn=0
+" For proper PEP8 indentation
+autocmd BufNewFile,BufRead *.py :
+    \ setlocal tabstop=4 |
+    \ setlocal softtabstop=4 |
+    \ setlocal shiftwidth=4 |
+    \ setlocal textwidth=119 |
+    \ setlocal colorcolumn=119 |
+    \ setlocal expandtab |
+    \ setlocal autoindent |
+    \ setlocal fileformat=unix |
+au BufNewFile,BufRead *.js,*.html,*.css :
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
 
 " I don't know why this needs to be here
 let &path.="src/include,/usr/include/AL,"
@@ -128,13 +146,23 @@ map [5;5~ :tabprevious<CR>
 " nnoremap <C-PageDown> <Esc>:tabprevious<CR>
 map [6;5~ :tabnext<CR>
 nnoremap <C-t> :tabnew <CR>
+" List buffers and choose one
+nnoremap gb :ls<CR>:b<Space>
 " nnoremap <C-S-PageUp> :tabmove -1 <CR>
 " map [5~ :tabmove -1<CR>
 " nnoremap <C-S-PageDown> :tabmove +1 <CR>
 " map [6~ :tabmove +1<CR>
+" To comment / uncomment
+autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
+autocmd FileType sh,ruby,python   let b:comment_leader = '# '
+autocmd FileType conf,fstab       let b:comment_leader = '# '
+autocmd FileType tex              let b:comment_leader = '% '
+autocmd FileType mail             let b:comment_leader = '> '
 noremap <silent> <Leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> <Leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
-nnoremap <Leader>pr  <Esc>:w<CR>:! python %:p<Enter>
+" To run the file
+nnoremap <Leader>pr  <Esc>:w<CR>:! python3 %:p<Enter>
+nnoremap <Leader>lr  <Esc>:w<CR>:! lua5.3 %:p<Enter>
 " This is for swapping text
 vnoremap <C-X> <Esc>`.``gvP``P
 
@@ -152,36 +180,17 @@ endif
 " To see docstrings for folded code
 let g:SimpylFold_docstring_preview=1
 
-set shiftwidth=0
-set textwidth=0
-set colorcolumn=0
-" For proper PEP8 indentation
-autocmd BufNewFile,BufRead *.py :
-    \ setlocal tabstop=4 |
-    \ setlocal softtabstop=4 |
-    \ setlocal shiftwidth=4 |
-    \ setlocal textwidth=79 |
-    \ setlocal colorcolumn=79 |
-    \ setlocal expandtab |
-    \ setlocal autoindent |
-    \ setlocal fileformat=unix |
-au BufNewFile,BufRead *.js,*.html,*.css :
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2 |
-
 " To mark extraneous whitespace red
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " To make YouCompleteMe window go away when done with it and shortcut for go
 " to definition
-let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>gg  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>gt  :tab split \| YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>dd  :YcmCompleter GetDoc<CR>
 let g:ycm_python_binary_path = 'python'
-let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_completion=0
 let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_add_preview_to_completeopt = 0
@@ -200,13 +209,10 @@ EOF
 " Make python code prettier
 let python_highlight_all=1
 
-" Make powerline appear even with one window
-set laststatus=2
-
 " NerdTree
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 map <C-n> :NERDTreeToggle<CR> " Map shortcut to start
-map <F3> :NERDTreeFind<CR> " Map shortcut to find file
+map <leader>nf :NERDTreeFind<CR> " Map shortcut to find file
 
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -285,11 +291,11 @@ endif
 " call togglebg#map("<F5>") " Switch backrounds with F5
 
 " Replace pdb to ipdb
-ab ip import ipdb; ipdb.set_trace()
+ab pd import pdb; pdb.set_trace()
 ab jj <Esc>:w<CR>
 
 " Open Tagbar with F8
-nmap <F8> :TagbarToggle<CR>
+nmap <leader>tt :TagbarToggle<CR>
 
 " isort settings
 let g:vim_isort_python_version = 'python3'

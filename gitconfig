@@ -1,7 +1,7 @@
 [user]
   name = Miroslav Kovar
   email = miroslavkovar@protonmail.com
-	signingkey = C7D5D13580936D88
+  signingkey = C7D5D13580936D88
 [color]
   ui = auto
 [alias]

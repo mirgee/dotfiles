@@ -116,11 +116,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=$PATH:/usr/local/MATLAB/R2016b/bin
+# export PATH=$PATH:/usr/local/MATLAB/R2016b/bin
 # export PATH=/home/miroslav/anaconda3/bin:$PATH
-export PATH=/opt/clion-2017.1.1/bin:$PATH
-export PATH=/opt/pycharm-2017.1.5/bin:$PATH
-export PYTHONPATH=/home/miroslav/Source/thesis_project/src:$PYTHONPATH
+# export PATH=/opt/clion-2017.1.1/bin:$PATH
+# export PATH=/opt/pycharm-2017.1.5/bin:$PATH
+# export PYTHONPATH=/home/miroslav/Source/thesis_project/src:$PYTHONPATH
 export TERM=screen-256color
 
-. /home/miroslav/anaconda3/etc/profile.d/conda.sh
+# . /home/miroslav/anaconda3/etc/profile.d/conda.sh
