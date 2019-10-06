@@ -12,84 +12,47 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'terryma/vim-smooth-scroll'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
-" https://github.com/Valloric/YouCompleteMe#ubuntu-linux-x64
 Plugin 'Valloric/YouCompleteMe' " Python autocomplete
 Plugin 'vim-syntastic/syntastic' " Checking syntax after save
 " Plugin 'nvie/vim-flake8' " PEP 8 checking
 Plugin 'fisadev/vim-isort' " Sorting python imports
 Plugin 'scrooloose/nerdtree' " Proper file tree
-" Plugin 'jistr/vim-nerdtree-tabs' " Use nerdtree with tabs
 Plugin 'majutsushi/tagbar' " Seeing classes in files
+Plugin 'kien/ctrlp.vim' " To search any files or tags
+Plugin 'jremmen/vim-ripgrep' " Grepping through repo
 Plugin 'tpope/vim-fugitive' " To perform basic git commands without leaving vim
 Plugin 'airblade/vim-gitgutter' " Control git from vim
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " To display virtualenv, git branch, edited files, etc.
+" Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " To display virtualenv, git branch, edited files, etc.
+Plugin 'itchyny/lightline.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin' " To see git status in nerdtree
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " To reflect filetype in nerdtree
 Plugin 'tpope/vim-surround' " Handy tool for efficient change of brackets
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'kien/ctrlp.vim' " To search any files or tags
-Plugin 'jremmen/vim-ripgrep' " Grepping through repo
+" Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Requires installation e.g. with:
 " curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.9.0/ripgrep_0.9.0_amd64.deb
 " sudo dpkg -i ripgrep_0.9.0_amd64.deb
+
 " Colorschemes
-Plugin 'git://github.com/altercation/vim-colors-solarized.git'
-Plugin 'jnurmine/Zenburn'
-Plugin 'tomasr/molokai'
-Plugin 'editorconfig/editorconfig-vim'
+Plugin 'morhetz/gruvbox'
+" Plugin 'git://github.com/altercation/vim-colors-solarized.git'
+" Plugin 'jnurmine/Zenburn'
+" Plugin 'tomasr/molokai'
+" Plugin 'editorconfig/editorconfig-vim' " For specific syntax settings for a project
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-
-"--------------------------------------------------------------------------------------------"
-"LATEX SUITE"
-
-" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
-filetype plugin on
-
-" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
-" can be called correctly.
-set shellslash
-
-" IMPORTANT: grep will sometimes skip displaying the file name if you
-" search in a singe file. This will confuse Latex-Suite. Set your grep
-" program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
-
-" OPTIONAL: This enables automatic indentation as you type.
-filetype indent on
-
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
-let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_MultipleCompileFormats='pdf, aux'
-let g:Tex_GotoError = 0
-let g:Tex_IgnoredWarnings =
-    \"Underfull"."\n".
-    \"Marginpar on page"."\n"
-let g:Tex_IgnoreLevel = 2
-let g:Tex_FoldedEnvironments = 'align,figure,table,dfn,thm'
 
 
-"--------------------------------------------------------------------------------------------"
 "OTHER"
 syntax on
+set nobackup
+set nowritebackup
+set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set cursorline    " highlight current line
+
 set number
 set wildmenu
 set scrolloff=3
@@ -132,11 +95,7 @@ au BufNewFile,BufRead *.js,*.html,*.css :
     \ set shiftwidth=2 |
 
 " I don't know why this needs to be here
-let &path.="src/include,/usr/include/AL,"
-
-" Smooth scrolling
-noremap <silent> <c-b> :call smooth_scroll#up(&scroll, 20, 2)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down(&scroll, 20, 2)<CR>
+" let &path.="src/include,/usr/include/AL,"
 
 " Shortcuts
 nnoremap <CR> o<Esc>
@@ -186,10 +145,10 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " To make YouCompleteMe window go away when done with it and shortcut for go
 " to definition
-map <leader>gg  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>gt  :tab split \| YcmCompleter GoToDefinitionElseDeclaration<CR>
-map <leader>dd  :YcmCompleter GetDoc<CR>
-let g:ycm_python_binary_path = 'python'
+map <leader>d  :YcmCompleter GetDoc<CR>
+let g:ycm_python_binary_path = 'python3.7'
 let g:ycm_autoclose_preview_window_after_completion=0
 let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
@@ -242,6 +201,10 @@ let s:white = "FFFFFF"
 let s:rspec_red = 'FE405F'
 let s:git_orange = 'F54D27'
 
+
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['yml'] = s:yellow
+
 let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['py'] = s:blue 
 
@@ -277,18 +240,52 @@ endfunction
 
 nnoremap <C-W>e :<C-u>call ToggleErrors()<CR>
 
-" Make vim and system clipboard the same
-set clipboard+=unnamed
+if !has('gui_running')
+    set t_Co=256
+endif
+
+let g:lightline = {
+      \ 'colorscheme': 'seoul256',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'relativepath', 'modified' ] ],
+      \   'right': [['lineinfo'],
+      \             ['percent'],
+      \             ['fileformat', 'fileencoding', 'filetype', 'charvaluehex']]
+      \ },
+      \ 'inactive': {
+      \   'left': [['mode', 'paste'],
+      \            ['relativepath', 'modified']],
+      \   'right': []
+      \ },
+      \ 'component_function': {
+      \    'gitbranch': 'LightlineFugitive'
+      \ },
+      \ }
+
+function! LightlineFugitive() abort
+  if &filetype ==# 'help'
+    return ''
+  endif
+  if has_key(b:, 'lightline_fugitive') && reltimestr(reltime(b:lightline_fugitive_)) =~# '^\s*0\.[0-5]'
+    return b:lightline_fugitive
+  endif
+  try
+    if exists('*fugitive#head')
+      let head = fugitive#head()
+    else
+      return ''
+    endif
+    let b:lightline_fugitive = head
+    let b:lightline_fugitive_ = reltime()
+    return b:lightline_fugitive
+  catch
+  endtry
+  return ''
+endfunction
 
 " Keep colorscheme options at the end
-if has('gui_running')
-  " set background=dark
-  " colorscheme solarized
-  colorscheme molokai
-else
-  colorscheme molokai
-endif
-" call togglebg#map("<F5>") " Switch backrounds with F5
+colorscheme gruvbox
 
 " Replace pdb to ipdb
 ab pd import pdb; pdb.set_trace()
