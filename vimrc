@@ -13,21 +13,23 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe' " Python autocomplete
+Plugin 'tmhedberg/SimpylFold' " Folding python code
 Plugin 'vim-syntastic/syntastic' " Checking syntax after save
 " Plugin 'nvie/vim-flake8' " PEP 8 checking
 Plugin 'fisadev/vim-isort' " Sorting python imports
 Plugin 'scrooloose/nerdtree' " Proper file tree
-Plugin 'majutsushi/tagbar' " Seeing classes in files
+" Plugin 'majutsushi/tagbar' " Seeing classes in files
 Plugin 'kien/ctrlp.vim' " To search any files or tags
+" Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plugin 'junegunn/fzf.vim.git'
 Plugin 'jremmen/vim-ripgrep' " Grepping through repo
 Plugin 'tpope/vim-fugitive' " To perform basic git commands without leaving vim
 Plugin 'airblade/vim-gitgutter' " Control git from vim
-" Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'} " To display virtualenv, git branch, edited files, etc.
 Plugin 'itchyny/lightline.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin' " To see git status in nerdtree
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " To reflect filetype in nerdtree
 Plugin 'tpope/vim-surround' " Handy tool for efficient change of brackets
-" Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'vim-scripts/indentpython.vim'
 " Requires installation e.g. with:
 " curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.9.0/ripgrep_0.9.0_amd64.deb
 " sudo dpkg -i ripgrep_0.9.0_amd64.deb
@@ -52,6 +54,9 @@ set nobackup
 set nowritebackup
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 set cursorline    " highlight current line
+set splitbelow
+set splitright
+set autowrite " Save on buffer switch
 
 set number
 set wildmenu
@@ -111,6 +116,7 @@ nnoremap gb :ls<CR>:b<Space>
 " map [5~ :tabmove -1<CR>
 " nnoremap <C-S-PageDown> :tabmove +1 <CR>
 " map [6~ :tabmove +1<CR>
+nnoremap <C-b> :CtrlPBuffer<CR>
 " To comment / uncomment
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
 autocmd FileType sh,ruby,python   let b:comment_leader = '# '
@@ -124,6 +130,19 @@ nnoremap <Leader>pr  <Esc>:w<CR>:! python3 %:p<Enter>
 nnoremap <Leader>lr  <Esc>:w<CR>:! lua5.3 %:p<Enter>
 " This is for swapping text
 vnoremap <C-X> <Esc>`.``gvP``P
+
+" Automatically closing braces
+inoremap {<CR> {<CR>}<Esc>ko<tab>
+inoremap [<CR> [<CR>]<Esc>ko<tab>
+inoremap (<CR> (<CR>)<Esc>ko<tab>
+
+nnoremap <Leader><Space> :nohlsearch<CR>
+nnoremap <Leader>s :update<CR>
+nnoremap <Leader>fc :Commits<CR>
+nnoremap <Leader>fb :BCommits<CR>
+nnoremap <Leader>fs :Gstatus<CR>
+
+map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
 " This is probably to start where left
 autocmd CmdwinEnter * nnoremap <CR> <CR>
@@ -149,7 +168,7 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>gt  :tab split \| YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>d  :YcmCompleter GetDoc<CR>
 let g:ycm_python_binary_path = 'python3.7'
-let g:ycm_autoclose_preview_window_after_completion=0
+let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_add_preview_to_completeopt = 0
@@ -177,7 +196,7 @@ let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 " let g:nerdtree_tabs_open_on_console_startup=1
 
-let NERDTreeSortOrder=['\/$', '\.py$', '\.ipynb$', '\.sh$', '\.sh\*$', '\.conf*$', '\.yml$', '\.md$', '\.ini$', '\.in$', '\.txt$', '*', '\.pyc$', '\.swp$', '\.bak$', '\~$']
+let NERDTreeSortOrder=['\/$', '\.py$', '\.ipynb$', '\.js', '\.json', '\.sh$', '\.sh\*$', '\.conf*$', '\.yml$', '\.md$', '\.ini$', '\.in$', '\.txt$', '*', '\.pyc$', '\.swp$', '\.bak$', '\~$']
 
 let g:NERDTreeFileExtensionHighlightFullName = 1
 
@@ -208,11 +227,18 @@ let g:NERDTreeExtensionHighlightColor['yml'] = s:yellow
 let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['py'] = s:blue 
 
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreePatternMatchHighlightColor['json'] = s:orange 
+
+let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreePatternMatchHighlightColor['js'] = s:darkOrange
+
 let g:NERDTreeExactMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExactMatchHighlightColor['.gitignore'] = s:git_orange " sets the color for .gitignore files
 
 let g:NERDTreePatternMatchHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreePatternMatchHighlightColor['.*_spec\.rb$'] = s:rspec_red " sets the color for files ending with _spec.rb
+
 
 " Syntastic recommended settings
 set statusline+=%#warningmsg#
@@ -225,6 +251,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_jslint_checkers = ['jshint']
 " let g:syntastic_python_checkers = ['pylint']
 " let g:syntastic_python_pylint_post_args="--max-line-length=79"
 
@@ -284,6 +311,8 @@ function! LightlineFugitive() abort
   return ''
 endfunction
 
+let g:rg_command='rg -tpy --vimgrep'
+
 " Keep colorscheme options at the end
 colorscheme gruvbox
 
@@ -292,7 +321,29 @@ ab pd import pdb; pdb.set_trace()
 ab jj <Esc>:w<CR>
 
 " Open Tagbar with F8
-nmap <leader>tt :TagbarToggle<CR>
+" nmap <leader>tt :TagbarToggle<CR>
 
 " isort settings
 let g:vim_isort_python_version = 'python3'
+
+
+" Save / restore session
+fu! SaveSess()
+    execute 'mksession! ' . getcwd() . '/.session.vim'
+endfunction
+
+fu! RestoreSess()
+if filereadable(getcwd() . '/.session.vim')
+    execute 'so ' . getcwd() . '/.session.vim'
+    " if bufexists(1)
+    "     for l in range(1, bufnr('$'))
+    "         if bufwinnr(l) == -1
+    "             exec 'sbuffer ' . l
+    "         endif
+    "     endfor
+    " endif
+endif
+endfunction
+
+autocmd VimLeave * call SaveSess()
+autocmd VimEnter * nested call RestoreSess()

@@ -49,6 +49,7 @@ git clone https://github.com/tiagofumo/vim-nerdtree-syntax-highlight.git
 git clone https://github.com/jnurmine/Zenburn.git
 git clone https://github.com/tomasr/molokai.git
 git clone https://github.com/editorconfig/editorconfig-vim.git
+git clone https://github.com/pangloss/vim-javascript.git
 
 # Setup Ycm
 cd YouCompleteMe/
