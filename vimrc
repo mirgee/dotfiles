@@ -30,6 +30,12 @@ Plugin 'Xuyuanp/nerdtree-git-plugin' " To see git status in nerdtree
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " To reflect filetype in nerdtree
 Plugin 'tpope/vim-surround' " Handy tool for efficient change of brackets
 Plugin 'vim-scripts/indentpython.vim'
+Plugin 'othree/yajs.vim'
+Plugin 'othree/es.next.syntax.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'ianks/vim-tsx'
+Plugin 'dense-analysis/ale'
+
 " Requires installation e.g. with:
 " curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.9.0/ripgrep_0.9.0_amd64.deb
 " sudo dpkg -i ripgrep_0.9.0_amd64.deb
@@ -85,19 +91,21 @@ set shiftwidth=0
 set textwidth=0
 set colorcolumn=0
 " For proper PEP8 indentation
-autocmd BufNewFile,BufRead *.py :
-    \ setlocal tabstop=4 |
-    \ setlocal softtabstop=4 |
-    \ setlocal shiftwidth=4 |
-    \ setlocal textwidth=119 |
-    \ setlocal colorcolumn=119 |
+" autocmd BufNewFile,BufRead *.py :
+"     \ setlocal tabstop=4 |
+"     \ setlocal softtabstop=4 |
+"     \ setlocal shiftwidth=4 |
+"     \ setlocal textwidth=119 |
+"     \ setlocal colorcolumn=119 |
+"     \ setlocal expandtab |
+"     \ setlocal autoindent |
+"     \ setlocal fileformat=unix |
+au BufNewFile,BufRead *.js,*.html,*.css,*.ts :
+    \ setlocal tabstop=2 |
+    \ setlocal softtabstop=2 |
+    \ setlocal shiftwidth=2 |
     \ setlocal expandtab |
     \ setlocal autoindent |
-    \ setlocal fileformat=unix |
-au BufNewFile,BufRead *.js,*.html,*.css :
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2 |
 
 " I don't know why this needs to be here
 " let &path.="src/include,/usr/include/AL,"
@@ -173,6 +181,9 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
+" Start autocompletion after 4 chars
+" let g:ycm_min_num_of_chars_for_completion = 4
+" let g:ycm_min_num_identifier_candidate_chars = 4
 
 " Add virtualenv support for YouCompleteMe
 py3 << EOF
@@ -221,8 +232,8 @@ let s:rspec_red = 'FE405F'
 let s:git_orange = 'F54D27'
 
 
-let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
-let g:NERDTreeExtensionHighlightColor['yml'] = s:yellow
+" let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+" let g:NERDTreeExtensionHighlightColor['yml'] = s:beige
 
 let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
 let g:NERDTreeExtensionHighlightColor['py'] = s:blue 
@@ -251,7 +262,8 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_jslint_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['standard', 'eslint']
+let g:syntastic_typescript_checkers = ['tsserver', 'eslint', 'prettier']
 " let g:syntastic_python_checkers = ['pylint']
 " let g:syntastic_python_pylint_post_args="--max-line-length=79"
 

@@ -8,23 +8,25 @@ if ! [ -x "$(command -v cmake)" ]; then
   exit 1
 fi
 
+
+# Create symbolic links in $HOME
+cd ~
 if [[ -f .aliases || -f .gitconfig || -f .vim || -f .vimrc ]]; then
   echo 'Some dotfile already exists, not making any smart move automatically.'
   echo 'Either remove these dotfiles or edit this script manually.'
   exit 1
 fi
+ln -sf ~/source/dotfiles/aliases ~/.aliases
+ln -sf ~/source/dotfiles/agignore ~/.agignore
+ln -sf ~/source/dotfiles/gitconfig ~/.gitconfig
+ln -sf ~/source/dotfiles/gitignore_global ~/.gitignore_global
+ln -sf ~/source/dotfiles/vim ~/.vim
+ln -sf ~/source/dotfiles/vimrc ~/.vimrc
 
-
-# Create symbolic links in $HOME
-cd ~
-ln -s dotfiles/aliases .aliases
-ln -s dotfiles/agignore .agignore
-ln -s dotfiles/gitconfig .gitconfig
-ln -s dotfiles/vim .vim
-ln -s dotfiles/vimrc .vimrc
+echo 'Finished'
 
 # Install vim packages
-cd dotfiles/vim/bundle
+cd ~/source/dotfiles/vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim
 git clone https://github.com/Valloric/YouCompleteMe.git
 # git clone https://github.com/junegunn/fzf.vim.git
@@ -52,7 +54,7 @@ git clone https://github.com/editorconfig/editorconfig-vim.git
 git clone https://github.com/pangloss/vim-javascript.git
 
 # Setup Ycm
-cd YouCompleteMe/
+cd YouCompleteMe
 git submodule update --init --recursive
 ./install.py --clang-completer --gocode-completer
 cd ..
