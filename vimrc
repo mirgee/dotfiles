@@ -106,6 +106,14 @@ au BufNewFile,BufRead *.js,*.html,*.css,*.ts :
     \ setlocal shiftwidth=2 |
     \ setlocal expandtab |
     \ setlocal autoindent |
+set backspace=indent,eol,start
+set background=light
+
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
 
 " I don't know why this needs to be here
 " let &path.="src/include,/usr/include/AL,"
@@ -150,7 +158,7 @@ nnoremap <Leader>fc :Commits<CR>
 nnoremap <Leader>fb :BCommits<CR>
 nnoremap <Leader>fs :Gstatus<CR>
 
-map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+map <Leader>bg :let &background = ( &background == "dark"? "light": "dark")<CR>
 
 " This is probably to start where left
 autocmd CmdwinEnter * nnoremap <CR> <CR>
@@ -174,13 +182,15 @@ au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 " to definition
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>gt  :tab split \| YcmCompleter GoToDefinitionElseDeclaration<CR>
-map <leader>d  :YcmCompleter GetDoc<CR>
+map <leader>D  :YcmCompleter GetDoc<CR>
+nmap <leader>d <plug>(YCMHover)
 let g:ycm_python_binary_path = 'python3.7'
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
+let g:ycm_auto_hover = ''
 " Start autocompletion after 4 chars
 " let g:ycm_min_num_of_chars_for_completion = 4
 " let g:ycm_min_num_identifier_candidate_chars = 4
@@ -323,7 +333,7 @@ function! LightlineFugitive() abort
   return ''
 endfunction
 
-let g:rg_command='rg -tpy --vimgrep'
+" let g:rg_command='rg -tpy --vimgrep'
 
 " Keep colorscheme options at the end
 colorscheme gruvbox
@@ -359,3 +369,8 @@ endfunction
 
 autocmd VimLeave * call SaveSess()
 autocmd VimEnter * nested call RestoreSess()
+
+if has('persistent_undo')      "check if your vim version supports it
+  set undofile                 "turn on the feature  
+  set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
+  endif  
