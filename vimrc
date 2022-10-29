@@ -13,15 +13,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe' " Python autocomplete
-Plugin 'tmhedberg/SimpylFold' " Folding python code
 Plugin 'vim-syntastic/syntastic' " Checking syntax after save
-" Plugin 'nvie/vim-flake8' " PEP 8 checking
-Plugin 'fisadev/vim-isort' " Sorting python imports
 Plugin 'scrooloose/nerdtree' " Proper file tree
-" Plugin 'majutsushi/tagbar' " Seeing classes in files
 Plugin 'kien/ctrlp.vim' " To search any files or tags
-" Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-" Plugin 'junegunn/fzf.vim.git'
 Plugin 'jremmen/vim-ripgrep' " Grepping through repo
 Plugin 'tpope/vim-fugitive' " To perform basic git commands without leaving vim
 Plugin 'airblade/vim-gitgutter' " Control git from vim
@@ -29,23 +23,10 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'Xuyuanp/nerdtree-git-plugin' " To see git status in nerdtree
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight' " To reflect filetype in nerdtree
 Plugin 'tpope/vim-surround' " Handy tool for efficient change of brackets
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'othree/yajs.vim'
-Plugin 'othree/es.next.syntax.vim'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'ianks/vim-tsx'
-Plugin 'dense-analysis/ale'
-
-" Requires installation e.g. with:
-" curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.9.0/ripgrep_0.9.0_amd64.deb
-" sudo dpkg -i ripgrep_0.9.0_amd64.deb
+Plugin 'hashivim/vim-terraform'
 
 " Colorschemes
 Plugin 'morhetz/gruvbox'
-" Plugin 'git://github.com/altercation/vim-colors-solarized.git'
-" Plugin 'jnurmine/Zenburn'
-" Plugin 'tomasr/molokai'
-" Plugin 'editorconfig/editorconfig-vim' " For specific syntax settings for a project
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -63,14 +44,11 @@ set cursorline    " highlight current line
 set splitbelow
 set splitright
 set autowrite " Save on buffer switch
-
 set number
 set wildmenu
 set scrolloff=3
 set tabstop=4
-set shiftwidth=4
 set expandtab
-set splitbelow
 set showcmd
 set tags=tags
 set viewoptions=cursor,folds,slash,unix
@@ -83,24 +61,21 @@ set guioptions-=T " Remove toolbar in gvim
 set guioptions-=m  "remove menu bar
 set guioptions-=L
 set mouse=a
-set splitbelow
-set splitright
 set laststatus=2 " Make powerline appear even with one window
-
 set shiftwidth=0
 set textwidth=0
 set colorcolumn=0
+set noincsearch
+
+" Allows dragging
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
+
 " For proper PEP8 indentation
-" autocmd BufNewFile,BufRead *.py :
-"     \ setlocal tabstop=4 |
-"     \ setlocal softtabstop=4 |
-"     \ setlocal shiftwidth=4 |
-"     \ setlocal textwidth=119 |
-"     \ setlocal colorcolumn=119 |
-"     \ setlocal expandtab |
-"     \ setlocal autoindent |
-"     \ setlocal fileformat=unix |
-au BufNewFile,BufRead *.js,*.html,*.css,*.ts :
+au BufNewFile,BufRead *.js,*.jsx,*.html,*.css,*.ts :
     \ setlocal tabstop=2 |
     \ setlocal softtabstop=2 |
     \ setlocal shiftwidth=2 |
@@ -109,74 +84,22 @@ au BufNewFile,BufRead *.js,*.html,*.css,*.ts :
 set backspace=indent,eol,start
 set background=light
 
-if has("mouse_sgr")
-    set ttymouse=sgr
-else
-    set ttymouse=xterm2
-end
-
-" I don't know why this needs to be here
-" let &path.="src/include,/usr/include/AL,"
-
 " Shortcuts
-nnoremap <CR> o<Esc>
-nnoremap <S-CR> O<Esc>
-" nnoremap <C-PageUp> :tabnext<CR>
-map [5;5~ :tabprevious<CR>
-" nnoremap <C-PageDown> <Esc>:tabprevious<CR>
-map [6;5~ :tabnext<CR>
 nnoremap <C-t> :tabnew <CR>
-" List buffers and choose one
-nnoremap gb :ls<CR>:b<Space>
-" nnoremap <C-S-PageUp> :tabmove -1 <CR>
-" map [5~ :tabmove -1<CR>
-" nnoremap <C-S-PageDown> :tabmove +1 <CR>
-" map [6~ :tabmove +1<CR>
 nnoremap <C-b> :CtrlPBuffer<CR>
-" To comment / uncomment
-autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
-autocmd FileType sh,ruby,python   let b:comment_leader = '# '
-autocmd FileType conf,fstab       let b:comment_leader = '# '
-autocmd FileType tex              let b:comment_leader = '% '
-autocmd FileType mail             let b:comment_leader = '> '
-noremap <silent> <Leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> <Leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
-" To run the file
-nnoremap <Leader>pr  <Esc>:w<CR>:! python3 %:p<Enter>
-nnoremap <Leader>lr  <Esc>:w<CR>:! lua5.3 %:p<Enter>
-" This is for swapping text
-vnoremap <C-X> <Esc>`.``gvP``P
-
-" Automatically closing braces
-inoremap {<CR> {<CR>}<Esc>ko<tab>
-inoremap [<CR> [<CR>]<Esc>ko<tab>
-inoremap (<CR> (<CR>)<Esc>ko<tab>
-
 nnoremap <Leader><Space> :nohlsearch<CR>
-nnoremap <Leader>s :update<CR>
-nnoremap <Leader>fc :Commits<CR>
-nnoremap <Leader>fb :BCommits<CR>
-nnoremap <Leader>fs :Gstatus<CR>
 
 map <Leader>bg :let &background = ( &background == "dark"? "light": "dark")<CR>
 
-" This is probably to start where left
-autocmd CmdwinEnter * nnoremap <CR> <CR>
-autocmd BufReadPost quickfix nnoremap <CR> <CR>
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview
-
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g'\"" | endif
-endif
-
-" To see docstrings for folded code
-let g:SimpylFold_docstring_preview=1
+" Automatically save folds
+" autocmd CmdwinEnter * nnoremap <CR> <CR>
+" autocmd BufReadPost quickfix nnoremap <CR> <CR>
+" autocmd BufWinLeave *.* mkview
+" autocmd BufWinEnter *.* silent loadview
 
 " To mark extraneous whitespace red
 highlight BadWhitespace ctermbg=red guibg=darkred
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h, *.js,  match BadWhitespace /\s\+$/
 
 " To make YouCompleteMe window go away when done with it and shortcut for go
 " to definition
@@ -184,14 +107,22 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>gt  :tab split \| YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>D  :YcmCompleter GetDoc<CR>
 nmap <leader>d <plug>(YCMHover)
+
+let g:ycm_register_as_syntastic_checker = 1 "default 1
+let g:ycm_show_diagnostics_ui = 1 "default 1
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_always_populate_location_list = 1 "default 0
+let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
+let g:ycm_complete_in_strings = 1 "default 1
+let g:ycm_collect_identifiers_from_tags_files = 0 "default 0
 let g:ycm_python_binary_path = 'python3.7'
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_goto_buffer_command = 'same-buffer'
 let g:ycm_auto_hover = ''
-" Start autocompletion after 4 chars
 " let g:ycm_min_num_of_chars_for_completion = 4
 " let g:ycm_min_num_identifier_candidate_chars = 4
 
@@ -205,9 +136,6 @@ if 'VIRTUAL_ENV' in os.environ:
   exec(open(activate_this).read(), dict(__file__=activate_this))
 EOF
 
-" Make python code prettier
-let python_highlight_all=1
-
 " NerdTree
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 map <C-n> :NERDTreeToggle<CR> " Map shortcut to start
@@ -215,10 +143,7 @@ map <leader>nf :NERDTreeFind<CR> " Map shortcut to find file
 
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-" let g:nerdtree_tabs_open_on_console_startup=1
-
 let NERDTreeSortOrder=['\/$', '\.py$', '\.ipynb$', '\.js', '\.json', '\.sh$', '\.sh\*$', '\.conf*$', '\.yml$', '\.md$', '\.ini$', '\.in$', '\.txt$', '*', '\.pyc$', '\.swp$', '\.bak$', '\~$']
-
 let g:NERDTreeFileExtensionHighlightFullName = 1
 
 " Customize colors
@@ -273,19 +198,9 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_javascript_checkers = ['standard', 'eslint']
-let g:syntastic_typescript_checkers = ['tsserver', 'eslint', 'prettier']
+let g:syntastic_typescript_checkers = ['eslint', 'tsserver', 'prettier']
 " let g:syntastic_python_checkers = ['pylint']
 " let g:syntastic_python_pylint_post_args="--max-line-length=79"
-
-" To open errors on CTRL+e
-function! ToggleErrors()
-    if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
-         " No location/quickfix list shown, open syntastic error location panel
-         Errors
-    else
-         lclose
-    endif
-endfunction
 
 nnoremap <C-W>e :<C-u>call ToggleErrors()<CR>
 
@@ -333,21 +248,8 @@ function! LightlineFugitive() abort
   return ''
 endfunction
 
-" let g:rg_command='rg -tpy --vimgrep'
-
 " Keep colorscheme options at the end
 colorscheme gruvbox
-
-" Replace pdb to ipdb
-ab pd import pdb; pdb.set_trace()
-ab jj <Esc>:w<CR>
-
-" Open Tagbar with F8
-" nmap <leader>tt :TagbarToggle<CR>
-
-" isort settings
-let g:vim_isort_python_version = 'python3'
-
 
 " Save / restore session
 fu! SaveSess()
