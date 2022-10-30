@@ -24,6 +24,9 @@ Plug 'andymass/vim-matchup'
 Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 Plug 'nvim-tree/nvim-tree.lua'
 
+" Git
+Plug 'tpope/vim-fugitive' " To perform basic git commands without leaving vim
+
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -50,6 +53,7 @@ Plug 'rhysd/vim-clang-format'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'hashivim/vim-terraform'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
@@ -70,24 +74,22 @@ source ~/.config/nvim/scripts/tree.vim
 " =============================================================================
 " # Editor settings
 " =============================================================================
+filetype plugin indent on
 " Completion
 " Better completion
 " menuone: popup even when there's only one match
 " noinsert: Do not insert text until a selection is made
 " noselect: Do not select, force user to select one from the menu
-" set completeopt=menuone,noinsert,noselect
-" Better display for messages
-" set cmdheight=2
+set completeopt=menuone,noinsert,noselect
 " You will have bad experience for diagnostic messages when it's default 4000.
-" set updatetime=300
-filetype plugin indent on
+set updatetime=300
 set autoindent
 set autowrite
 set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set encoding=utf-8
 set scrolloff=2
 set noshowmode
-set hidden
+set nohidden
 set nowrap
 set nojoinspaces
 set printfont=:h10
@@ -110,9 +112,9 @@ set wildmode=list:longest
 set wildignore=.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor
 
 " Use wide tabs
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 set expandtab
 
 " Wrapping options
@@ -139,7 +141,6 @@ let g:vim_markdown_frontmatter = 1
 set guioptions-=T " Remove toolbar
 set vb t_vb= " No more beeps
 set backspace=2 " Backspace over newlines
-set nofoldenable
 set ttyfast
 " https://github.com/vim/vim/issues/1735#issuecomment-383353563
 set lazyredraw
@@ -155,19 +156,21 @@ set colorcolumn=80 " and give me a colored column
 set showcmd " Show (partial) command in status line.
 set mouse=a " Enable mouse usage (all modes) in terminals
 set shortmess+=c " don't give |ins-completion-menu| messages.
+set background=light
+set viewoptions=cursor,folds
+set foldlevel=99
+set foldmethod=indent " Enable folding
+set nofoldenable
 
 " Show those damn hidden characters
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
 set listchars=nbsp:¬,extends:»,precedes:«,trail:•
-
+"
 " =============================================================================
 " # Keyboard shortcuts
 " =============================================================================
 " Quick-save
 nmap <leader>w :w<CR>
-
-" ; as :
-nnoremap ; :
 
 " Ctrl+h to stop searching
 vnoremap <C-h> :nohlsearch<cr>
@@ -185,6 +188,13 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
+
+inoremap <C-h> <left>
+inoremap <C-j> <down>
+inoremap <C-k> <up>
+inoremap <C-l> <right>
+inoremap <C-e> <C-o><A>
+inoremap <C-b> <C-o><I>
 
 " Left and right can switch buffers
 nnoremap <left> :bp<CR>
@@ -230,8 +240,9 @@ if has("autocmd")
 endif
 
 " Follow Rust code style rules
-au Filetype rust source ~/.config/nvim/scripts/spacetab.vim
-au Filetype rust set colorcolumn=100
+au Filetype rust source ~/.config/nvim/scripts/spacetab-rust.vim
+au Filetype javascript source ~/.config/nvim/scripts/spacetab-js.vim
+au Filetype typescript source ~/.config/nvim/scripts/spacetab-js.vim
 
 " Help filetype detection
 autocmd BufRead *.plot set filetype=gnuplot

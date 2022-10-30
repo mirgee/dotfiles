@@ -2,13 +2,14 @@
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ],
+      \             [ 'readonly', 'gitbranch', 'filename', 'modified' ] ],
       \   'right': [ [ 'lineinfo' ],
       \              [ 'percent' ],
       \              [ 'fileencoding', 'filetype' ] ],
       \ },
       \ 'component_function': {
-      \   'filename': 'LightlineFilename'
+      \   'filename': 'LightlineFilename',
+      \   'gitbranch': 'FugitiveHead'
       \ },
       \ }
 function! LightlineFilename()

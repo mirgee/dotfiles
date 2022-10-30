@@ -19,6 +19,7 @@ require("nvim-tree").setup({
     mappings = {
       list = {
         { key = "u", action = "dir_up" },
+        { key = "x", action = "close_node" },
       },
     },
   },
@@ -26,10 +27,10 @@ require("nvim-tree").setup({
     group_empty = true,
     icons = {
        show = {
-         file = false,
-         folder = false,
-         folder_arrow = false,
-         git = false,
+         file = true,
+         folder = true,
+         folder_arrow = true,
+         git = true,
        }
     }
   },
