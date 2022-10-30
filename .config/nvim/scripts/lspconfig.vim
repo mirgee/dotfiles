@@ -72,22 +72,23 @@ lspconfig.rust_analyzer.setup {
     ["rust-analyzer"] = {
       cargo = {
         allFeatures = true,
+        tests = true,
       },
       completion = {
-	postfix = {
-	  enable = false,
-	},
+        postfix = {
+          enable = false,
+        },
       },
     },
   },
   capabilities = capabilities,
 }
 
-lspconfig.tsserver.setup {}
+lspconfig.tsserver.setup { on_attach = on_attach, }
 
-lspconfig.vimls.setup {}
+lspconfig.vimls.setup { on_attach = on_attach, }
 
-lspconfig.pylsp.setup {}
+lspconfig.pylsp.setup { on_attach = on_attach, }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {

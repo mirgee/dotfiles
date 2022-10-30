@@ -21,11 +21,12 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'andymass/vim-matchup'
 
 " Tree
-Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
+Plug 'nvim-tree/nvim-web-devicons'
 Plug 'nvim-tree/nvim-tree.lua'
 
 " Git
-Plug 'tpope/vim-fugitive' " To perform basic git commands without leaving vim
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " Fuzzy finder
 Plug 'airblade/vim-rooter'
@@ -82,14 +83,14 @@ filetype plugin indent on
 " noselect: Do not select, force user to select one from the menu
 set completeopt=menuone,noinsert,noselect
 " You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
+set updatetime=4000
 set autoindent
-set autowrite
-set timeoutlen=300 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
+set noautowrite
+set hidden
+set noshowmode
+set timeoutlen=1000 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set encoding=utf-8
 set scrolloff=2
-set noshowmode
-set nohidden
 set nowrap
 set nojoinspaces
 set printfont=:h10
@@ -169,6 +170,17 @@ set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 " =============================================================================
 " # Keyboard shortcuts
 " =============================================================================
+" Ctrl+; as Esc
+nnoremap <C-;> <Esc>
+inoremap <C-;> <Esc>
+vnoremap <C-;> <Esc>
+snoremap <C-;> <Esc>
+xnoremap <C-;> <Esc>
+cnoremap <C-;> <C-c>
+onoremap <C-;> <Esc>
+lnoremap <C-;> <Esc>
+tnoremap <C-;> <Esc>
+
 " Quick-save
 nmap <leader>w :w<CR>
 
