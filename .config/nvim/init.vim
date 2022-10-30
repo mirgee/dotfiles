@@ -10,7 +10,6 @@ call plug#begin()
 
 " Load plugins
 " VIM enhancements
-Plug 'ciaranm/securemodelines'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'justinmk/vim-sneak'
 Plug 'tpope/vim-surround'
@@ -42,7 +41,7 @@ Plug 'hrsh7th/cmp-path', {'branch': 'main'}
 Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
 Plug 'ray-x/lsp_signature.nvim'
 
-" Only because nvim-cmp _requires_ snippets
+" nvim-cmp _requires_ snippets
 Plug 'hrsh7th/cmp-vsnip', {'branch': 'main'}
 Plug 'hrsh7th/vim-vsnip'
 
@@ -52,9 +51,9 @@ Plug 'stephpy/vim-yaml'
 Plug 'rust-lang/rust.vim'
 Plug 'rhysd/vim-clang-format'
 Plug 'fatih/vim-go'
-Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'hashivim/vim-terraform'
+Plug 'vim-python/python-syntax'
 
 " Colorschemes
 Plug 'morhetz/gruvbox'
@@ -242,6 +241,12 @@ map <leader>nf :NvimTreeFindFile<CR>
 autocmd BufRead *.orig set readonly
 autocmd BufRead *.pacnew set readonly
 
+" Help filetype detection
+autocmd BufRead *.md set filetype=markdown
+autocmd BufRead *.lds set filetype=ld
+autocmd BufRead *.trm set filetype=c
+autocmd BufRead *.xlsx.axlsx set filetype=ruby
+
 " Leave paste mode when leaving insert mode
 autocmd InsertLeave * set nopaste
 
@@ -255,14 +260,7 @@ endif
 au Filetype rust source ~/.config/nvim/scripts/spacetab-rust.vim
 au Filetype javascript source ~/.config/nvim/scripts/spacetab-js.vim
 au Filetype typescript source ~/.config/nvim/scripts/spacetab-js.vim
-
-" Help filetype detection
-autocmd BufRead *.plot set filetype=gnuplot
-autocmd BufRead *.md set filetype=markdown
-autocmd BufRead *.lds set filetype=ld
-autocmd BufRead *.tex set filetype=tex
-autocmd BufRead *.trm set filetype=c
-autocmd BufRead *.xlsx.axlsx set filetype=ruby
+au Filetype markdown source ~/.config/nvim/scripts/markdown.vim
 
 " Save / restore session
 fu! SaveSess()
