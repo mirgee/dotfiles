@@ -28,7 +28,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 
 " Fuzzy finder
-Plug 'airblade/vim-rooter'
+" Plug 'airblade/vim-rooter'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
@@ -56,7 +56,7 @@ Plug 'hashivim/vim-terraform'
 Plug 'vim-python/python-syntax'
 
 " Colorschemes
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 
 call plug#end()
 
@@ -90,7 +90,7 @@ set noshowmode
 set timeoutlen=1000 " http://stackoverflow.com/questions/2158516/delay-before-o-opens-a-new-line
 set encoding=utf-8
 set scrolloff=2
-set nowrap
+set wrap
 set nojoinspaces
 set printfont=:h10
 set printencoding=utf-8
@@ -152,7 +152,7 @@ set diffopt+=iwhite " No whitespace in vimdiff
 " Make diffing better: https://vimways.org/2018/the-power-of-diff/
 set diffopt+=algorithm:patience
 set diffopt+=indent-heuristic
-set colorcolumn=80 " and give me a colored column
+set colorcolumn=0 " don't give me a colored column
 set showcmd " Show (partial) command in status line.
 set mouse=a " Enable mouse usage (all modes) in terminals
 set shortmess+=c " don't give |ins-completion-menu| messages.
@@ -170,15 +170,15 @@ set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 " # Keyboard shortcuts
 " =============================================================================
 " Ctrl+; as Esc
-nnoremap <C-;> <Esc>
-inoremap <C-;> <Esc>
-vnoremap <C-;> <Esc>
-snoremap <C-;> <Esc>
-xnoremap <C-;> <Esc>
-cnoremap <C-;> <C-c>
-onoremap <C-;> <Esc>
-lnoremap <C-;> <Esc>
-tnoremap <C-;> <Esc>
+nnoremap <C-m> <Esc>
+inoremap <C-m> <Esc>
+vnoremap <C-m> <Esc>
+snoremap <C-m> <Esc>
+xnoremap <C-m> <Esc>
+cnoremap <C-m> <Esc>
+onoremap <C-m> <Esc>
+lnoremap <C-m> <Esc>
+tnoremap <C-m> <Esc>
 
 " Quick-save
 nmap <leader>w :w<CR>
@@ -210,10 +210,6 @@ inoremap <C-b> <C-o><I>
 " Left and right can switch buffers
 nnoremap <left> :bp<CR>
 nnoremap <right> :bn<CR>
-
-" Move by line
-nnoremap j gj
-nnoremap k gk
 
 " <leader><leader> toggles between buffers
 nnoremap <leader><leader> <c-^>
