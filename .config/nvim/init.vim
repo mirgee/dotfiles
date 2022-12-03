@@ -70,6 +70,7 @@ source ~/.config/nvim/scripts/lightline.vim
 source ~/.config/nvim/scripts/modelines.vim
 source ~/.config/nvim/scripts/fzf.vim
 source ~/.config/nvim/scripts/tree.vim
+source ~/.config/nvim/scripts/rust.vim
 
 " =============================================================================
 " # Editor settings
@@ -170,15 +171,15 @@ set listchars=nbsp:¬,extends:»,precedes:«,trail:•
 " # Keyboard shortcuts
 " =============================================================================
 " Ctrl+; as Esc
-nnoremap <C-m> <Esc>
-inoremap <C-m> <Esc>
-vnoremap <C-m> <Esc>
-snoremap <C-m> <Esc>
-xnoremap <C-m> <Esc>
-cnoremap <C-m> <Esc>
-onoremap <C-m> <Esc>
-lnoremap <C-m> <Esc>
-tnoremap <C-m> <Esc>
+nnoremap <C-;> <Esc>
+inoremap <C-;> <Esc>
+vnoremap <C-;> <Esc>
+snoremap <C-;> <Esc>
+xnoremap <C-;> <Esc>
+cnoremap <C-;> <Esc>
+onoremap <C-;> <Esc>
+lnoremap <C-;> <Esc>
+tnoremap <C-;> <Esc>
 
 " Quick-save
 nmap <leader>w :w<CR>
