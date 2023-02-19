@@ -41,6 +41,9 @@ Plug 'hrsh7th/cmp-path', {'branch': 'main'}
 Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
 Plug 'ray-x/lsp_signature.nvim'
 
+" Rust tools
+Plug 'simrat39/rust-tools.nvim'
+
 " nvim-cmp _requires_ snippets
 Plug 'hrsh7th/cmp-vsnip', {'branch': 'main'}
 Plug 'hrsh7th/vim-vsnip'
@@ -54,6 +57,8 @@ Plug 'fatih/vim-go'
 Plug 'plasticboy/vim-markdown'
 Plug 'hashivim/vim-terraform'
 Plug 'vim-python/python-syntax'
+Plug 'mhanberg/elixir.nvim', {'branch': 'main'}
+Plug 'elixir-editors/vim-elixir'
 
 " Colorschemes
 Plug 'gruvbox-community/gruvbox'
@@ -131,10 +136,14 @@ set ignorecase
 set nosmartcase
 set gdefault
 
+" Markdown formatter
 let g:sneak#s_next = 1
 let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_frontmatter = 1
+
+" Rust formatter
+let g:rustfmt_autosave = 1
 
 " =============================================================================
 " # GUI settings
@@ -259,6 +268,11 @@ au Filetype javascript source ~/.config/nvim/scripts/spacetab-js.vim
 au Filetype typescript source ~/.config/nvim/scripts/spacetab-js.vim
 au Filetype markdown source ~/.config/nvim/scripts/markdown.vim
 
+" Temporary workaround, delete once https://github.com/elixir-editors/vim-elixir/issues/562 is fixed
+au BufRead,BufNewFile *.ex,*.exs set filetype=elixir
+au BufRead,BufNewFile *.eex,*.heex,*.leex,*.sface,*.lexs set filetype=eelixir
+au BufRead,BufNewFile mix.lock set filetype=elixir
+
 " Save / restore session
 fu! SaveSess()
     execute 'mksession! ' . getcwd() . '/.session.vim'
@@ -275,6 +289,11 @@ autocmd VimEnter * nested call RestoreSess()
 
 " Script plugins
 autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
+
+" Copilot
+imap <silent><script><expr> <C-E> copilot#Accept("<End>")
+let g:copilot_no_tab_map = v:true
+let g:copilot_assume_mapped = v:true
 
 " =============================================================================
 " # Footer
