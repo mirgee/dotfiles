@@ -97,7 +97,16 @@ lspconfig.elixirls.setup { on_attach = on_attach, cmd = { "/Users/ab006rh/elixir
 
 lspconfig.eslint.setup { on_attach = on_attach  }
 
-lspconfig.tsserver.setup { on_attach = on_attach }
+lspconfig.tsserver.setup { on_attach = on_attach, settings = { }, capabilities = capabilities,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        -- Disable virtual_text
+        virtual_text = false
+      }
+    )
+  }
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
