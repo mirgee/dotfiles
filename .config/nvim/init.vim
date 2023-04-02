@@ -60,6 +60,12 @@ Plug 'vim-python/python-syntax'
 Plug 'mhanberg/elixir.nvim', {'branch': 'main'}
 Plug 'elixir-editors/vim-elixir'
 
+" AI support
+Plug 'MunifTanjim/nui.nvim', {'branch': 'main'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'jackMort/ChatGPT.nvim', {'branch': 'main'}
+
 " Colorschemes
 Plug 'gruvbox-community/gruvbox'
 
@@ -294,6 +300,9 @@ autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
 imap <silent><script><expr> <C-E> copilot#Accept("<End>")
 let g:copilot_no_tab_map = v:true
 let g:copilot_assume_mapped = v:true
+
+" Setup ChatGPT plugin
+source ~/.config/nvim/scripts/chatgpt.vim
 
 " =============================================================================
 " # Footer

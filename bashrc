@@ -72,6 +72,8 @@ xterm*|rxvt*)
     ;;
 esac
 
+source ~/.aliases
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -116,11 +118,37 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+export PATH="/usr/local/bin:$PATH"
 # export PATH=$PATH:/usr/local/MATLAB/R2016b/bin
 # export PATH=/home/miroslav/anaconda3/bin:$PATH
 # export PATH=/opt/clion-2017.1.1/bin:$PATH
 # export PATH=/opt/pycharm-2017.1.5/bin:$PATH
 # export PYTHONPATH=/home/miroslav/Source/thesis_project/src:$PYTHONPATH
 export TERM=screen-256color
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:/Users/ab006rh/.rustup/toolchains/stable-x86_64-apple-darwin/bin
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export OPENAI_API_KEY='***REMOVED***'
 
 # . /home/miroslav/anaconda3/etc/profile.d/conda.sh
+. "$HOME/.cargo/env"
+
+if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+  . /usr/local/etc/bash_completion.d/git-completion.bash
+fi
+
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+GPG_TTY=$(tty)
+export GPG_TTY
