@@ -66,6 +66,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'jackMort/ChatGPT.nvim', {'branch': 'main'}
 
+" Github integration
+" Plug 'kyazdani42/nvim-web-devicons'
+Plug 'pwntester/octo.nvim'
+
 " Colorschemes
 Plug 'gruvbox-community/gruvbox'
 
@@ -301,8 +305,13 @@ imap <silent><script><expr> <C-E> copilot#Accept("<End>")
 let g:copilot_no_tab_map = v:true
 let g:copilot_assume_mapped = v:true
 
+let $CARGO_TARGET_DIR = '/tmp/rust-analyzer'
+
 " Setup ChatGPT plugin
 source ~/.config/nvim/scripts/chatgpt.vim
+
+" Setup Octo
+source ~/.config/nvim/scripts/octo.vim
 
 " =============================================================================
 " # Footer

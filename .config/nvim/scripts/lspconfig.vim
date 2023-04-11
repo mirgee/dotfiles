@@ -83,6 +83,10 @@ rt.setup({
             enable = false,
           },
         },
+        server = {
+          extraEnv = {
+          },
+        },
       },
     },
     capabilities = capabilities,
