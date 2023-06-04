@@ -136,7 +136,7 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/Users/ab006rh/.rustup/toolchains/stable-x86_64-apple-darwin/bin
 export PATH="/usr/local/opt/llvm/bin:$PATH"
-export OPENAI_API_KEY='***REMOVED***'
+export OPENAI_API_KEY=''
 
 # . /home/miroslav/anaconda3/etc/profile.d/conda.sh
 . "$HOME/.cargo/env"

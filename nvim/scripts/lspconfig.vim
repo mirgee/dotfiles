@@ -62,29 +62,32 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
+
+local rt = require("rust-tools")
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-lspconfig.rust_analyzer.setup {
-  on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = {
-        allFeatures = true,
-        tests = true,
-      },
-      completion = {
-        postfix = {
-          enable = false,
+
+rt.setup({
+  server = {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          allFeatures = true,
+          tests = true,
+        },
+        completion = {
+          postfix = {
+            enable = false,
+          },
         },
       },
     },
+    capabilities = capabilities,
   },
-  capabilities = capabilities,
-}
-
-lspconfig.tsserver.setup { on_attach = on_attach, filetypes = { "typescript", "typescriptreact", "typescript.tsx" } }
+})
 
 lspconfig.vimls.setup { on_attach = on_attach, }
 
@@ -93,6 +96,17 @@ lspconfig.pylsp.setup { on_attach = on_attach, }
 lspconfig.elixirls.setup { on_attach = on_attach, cmd = { "/Users/ab006rh/elixir-ls/language_server.sh" }; }
 
 lspconfig.eslint.setup { on_attach = on_attach  }
+
+lspconfig.tsserver.setup { on_attach = on_attach, settings = { }, capabilities = capabilities,
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        -- Disable virtual_text
+        virtual_text = false
+      }
+    )
+  }
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {

@@ -41,6 +41,9 @@ Plug 'hrsh7th/cmp-path', {'branch': 'main'}
 Plug 'hrsh7th/nvim-cmp', {'branch': 'main'}
 Plug 'ray-x/lsp_signature.nvim'
 
+" Rust tools
+Plug 'simrat39/rust-tools.nvim'
+
 " nvim-cmp _requires_ snippets
 Plug 'hrsh7th/cmp-vsnip', {'branch': 'main'}
 Plug 'hrsh7th/vim-vsnip'
@@ -56,6 +59,16 @@ Plug 'hashivim/vim-terraform'
 Plug 'vim-python/python-syntax'
 Plug 'mhanberg/elixir.nvim', {'branch': 'main'}
 Plug 'elixir-editors/vim-elixir'
+
+" AI support
+Plug 'MunifTanjim/nui.nvim', {'branch': 'main'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'jackMort/ChatGPT.nvim', {'branch': 'main'}
+
+" Github integration
+" Plug 'kyazdani42/nvim-web-devicons'
+Plug 'pwntester/octo.nvim'
 
 " Colorschemes
 Plug 'gruvbox-community/gruvbox'
@@ -291,6 +304,14 @@ autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
 imap <silent><script><expr> <C-E> copilot#Accept("<End>")
 let g:copilot_no_tab_map = v:true
 let g:copilot_assume_mapped = v:true
+
+let $CARGO_TARGET_DIR = '/tmp/rust-analyzer'
+
+" Setup ChatGPT plugin
+source ~/.config/nvim/scripts/chatgpt.vim
+
+" Setup Octo
+source ~/.config/nvim/scripts/octo.vim
 
 " =============================================================================
 " # Footer
