@@ -1,28 +1,34 @@
-# [user]
-#   name = Miroslav Kovar
-#   email = miroslavkovar@protonmail.com
-# 	signingkey = C7D5D13580936D88
 [user]
 	email = miroslav.kovar@absa.africa
 	name = Miroslav Kovar
+	signingkey = 8570BDFA37C78FEF
 [color]
   ui = auto
 [alias]
   c = commit
   s = status
   f = push --force-with-lease
+  p = push
   st = status
   aa = add --all
   au = add --update
   co = checkout
+  cu = branch --show-current
+  cs = commit --signoff
+  lc = show HEAD^
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
   ll = log --oneline
   pf = !git remote | xargs -L1 git push --force-with-lease
+  pu = pull
   rb = rebase
   # https://stackoverflow.com/a/11688523/472927
   ss = "!f() { git stash show stash^{/$*} -p; }; f"
   sa = "!f() { git stash apply stash^{/$*}; }; f"
   sl = stash list
+  csm = commit --signoff --message
+  csn = commit --signoff --no-edit
+  casn = commit --amend --signoff --no-edit
+  last = log -1 HEAD
 [core]
   excludesfile = ~/.gitignore_global
   autocrlf = input
@@ -48,7 +54,7 @@
 [credential]
   helper = store
 [help]
-  autocorrect = 1
+  autocorrect = 0
 [ui "color"]
   ui = always
 [color]
@@ -62,11 +68,7 @@
   process = git-lfs filter-process
   required = true
   clean = git-lfs clean -- %f
-# [url "git@github.com:"]
-# 	insteadOf = https://github.com/
-# [gpg]
-#     program = gpg2
-# [interactive]
-#     singleKey = true
-# [commit]
-# 	gpgsign = true
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
