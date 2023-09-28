@@ -71,13 +71,12 @@ Plug 'jackMort/ChatGPT.nvim', {'branch': 'main'}
 Plug 'pwntester/octo.nvim'
 
 " Colorschemes
-Plug 'gruvbox-community/gruvbox'
+Plug 'gruvbox-community/gruvbox', {'branch': 'master'}
 
 call plug#end()
 
 " Colorscheme options at the end
 colorscheme gruvbox
-set background=dark
 syntax on
 
 source ~/.config/nvim/scripts/lspconfig.vim
@@ -108,9 +107,9 @@ set encoding=utf-8
 set scrolloff=2
 set wrap
 set nojoinspaces
-set printfont=:h10
-set printencoding=utf-8
-set printoptions=paper:letter
+" set printfont=:h10
+" set printencoding=utf-8
+" set printoptions=paper:letter
 " Always draw sign column. Prevent buffer moving when adding/deleting sign.
 set signcolumn=yes
 
@@ -181,6 +180,7 @@ set viewoptions=cursor,folds
 set foldlevel=99
 set foldmethod=indent " Enable folding
 set nofoldenable
+set termguicolors
 
 " Show those damn hidden characters
 " Verbose: set listchars=nbsp:¬,eol:¶,extends:»,precedes:«,trail:•
