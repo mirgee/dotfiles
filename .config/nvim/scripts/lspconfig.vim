@@ -119,4 +119,14 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = true,
   }
 )
+
+lspconfig.terraformls.setup{}
+
+lspconfig.lua_ls.setup{}
+
+lspconfig.solc.setup{
+    on_attach = on_attach,
+    root_dir = lspconfig.util.root_pattern('hardhat.config.*', '.git'),
+}
+
 END
