@@ -9,3 +9,6 @@ vim.g.rustfmt_fail_silently = 0
 
 -- Set the Rust clipboard command
 vim.g.rust_clip_command = 'xclip -selection clipboard'
+
+-- Environment variable
+vim.env.CARGO_TARGET_DIR = '/tmp/rust-analyzer'
