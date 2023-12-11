@@ -123,10 +123,13 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$HOME/.maestro/bin
 export PATH=$PATH:/Users/ab006rh/.rustup/toolchains/stable-x86_64-apple-darwin/bin
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 export OPENAI_API_KEY=''
 export NODE_EXTRA_CA_CERTS="/Users/ab006rh/Documents/Zscaler.pem"
+#  export AWS_CA_BUNDLE=/Users/ab006rh/.docker/certs.d/zscaler.pem
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
 
 # . /home/miroslav/anaconda3/etc/profile.d/conda.sh
 . "$HOME/.cargo/env"
