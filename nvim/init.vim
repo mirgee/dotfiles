@@ -60,6 +60,11 @@ Plug 'vim-python/python-syntax'
 Plug 'mhanberg/elixir.nvim', {'branch': 'main'}
 Plug 'elixir-editors/vim-elixir'
 
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install --frozen-lockfile --production',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'svelte', 'yaml', 'html'] }
+
 " AI support
 Plug 'MunifTanjim/nui.nvim', {'branch': 'main'}
 Plug 'nvim-lua/plenary.nvim'
