@@ -238,4 +238,27 @@ vim.cmd([[
   endif
 ]])
 
+-- Utility function to source a Lua file
+local function source_lua_file(file)
+    local ok, err = pcall(dofile, file)
+    if not ok then
+        print("Error loading " .. file .. ": " .. err)
+    end
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "rust",
+    callback = function()
+        source_lua_file(vim.fn.expand("~/.config/nvim/lua/mirgee/spacetab-rust.lua"))
+    end,
+})
+
+-- JavaScript and TypeScript code style rules
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {"javascript", "typescript"},
+    callback = function()
+        source_lua_file(vim.fn.expand("~/.config/nvim/lua/mirgee/spacetab-js.lua"))
+    end,
+})
+
 require('mirgee')

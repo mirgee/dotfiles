@@ -76,7 +76,3 @@ Plug 'pwntester/octo.nvim'
 Plug 'gruvbox-community/gruvbox', {'branch': 'master'}
 
 call plug#end()
-
-" Follow Rust code style rules
-au Filetype rust source ~/.config/nvim/scripts/spacetab-rust.lua
-au Filetype javascript,typescript source ~/.config/nvim/scripts/spacetab-js.lua
