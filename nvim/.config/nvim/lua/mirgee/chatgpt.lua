@@ -1,5 +1,3 @@
-" OPENAI_API_KEY variable must be set to your OpenAI API key
-lua <<EOF
 -- chat gpt
 require("chatgpt").setup({
   welcome_message = WELCOME_MESSAGE,
@@ -76,4 +74,3 @@ require("chatgpt").setup({
     delete_session = "d",
   },
 })
-EOF

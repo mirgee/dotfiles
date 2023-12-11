@@ -1,5 +1,3 @@
-" LSP configuration
-lua << END
 local cmp = require'cmp'
 
 local lspconfig = require'lspconfig'
@@ -145,5 +143,3 @@ lspconfig.solidity.setup({
   --   solidity = { includePath = '', remapping = { ["@OpenZeppelin/"] = 'OpenZeppelin/openzeppelin-contracts@4.6.0/' } }
   -- },
 })
-
-END

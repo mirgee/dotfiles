@@ -6,6 +6,7 @@ vim.g.mapleader = ' '
 vim.cmd('filetype plugin indent on')
 vim.cmd('colorscheme gruvbox')
 vim.cmd('syntax on')
+vim.cmd('set shell=/bin/bash')
 
 -- Completion options
 vim.o.completeopt = 'menuone,noinsert,noselect'
@@ -178,6 +179,9 @@ vim.api.nvim_set_keymap('n', '<Leader>bg', ':let &background = (&background == "
 vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', map_options)
 vim.api.nvim_set_keymap('n', '<leader>nf', ':NvimTreeFindFile<CR>', map_options)
 
+-- Show hidden characters
+vim.o.listchars = 'nbsp:¬,extends:»,precedes:«,trail:•'
+
 -- Autocommands
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -225,3 +229,13 @@ vim.g.copilot_assume_mapped = true
 vim.env.CARGO_TARGET_DIR = '/tmp/rust-analyzer'
 
 vim.cmd('runtime! plugin/python_setup.vim')
+
+-- Jump to last edit position on opening file
+-- https://stackoverflow.com/questions/31449496/vim-ignore-specifc-file-in-autocommand
+vim.cmd([[
+  if has("autocmd")
+    au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  endif
+]])
+
+require('mirgee')

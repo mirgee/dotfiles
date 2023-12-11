@@ -1,4 +1,3 @@
-lua << END
 --
 -- This function has been generated from your
 --   view.mappings.list
@@ -118,4 +117,3 @@ end
 require("nvim-tree").setup({
   on_attach = on_attach,
 })
-END
