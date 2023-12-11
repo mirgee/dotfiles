@@ -107,8 +107,12 @@ export NVM_DIR="$HOME/.nvm"
 export TERM=screen-256color
 
 export OPENAI_API_KEY=''
-. "$HOME/.cargo/env"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export GPG_TTY=$(tty)
+
+if [ -f "$HOME/.bashrc_env" ]; then
+    source "$HOME/.bashrc_env"
+fi
