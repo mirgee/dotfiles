@@ -77,13 +77,6 @@ Plug 'gruvbox-community/gruvbox', {'branch': 'master'}
 
 call plug#end()
 
-source ~/.config/nvim/scripts/lightline.vim
-source ~/.config/nvim/scripts/modelines.vim
-source ~/.config/nvim/scripts/fzf.vim
-source ~/.config/nvim/scripts/rust.vim
-
 " Follow Rust code style rules
-au Filetype rust source ~/.config/nvim/scripts/spacetab-rust.vim
-au Filetype javascript,typescript source ~/.config/nvim/scripts/spacetab-js.vim
-" Script plugins
-autocmd Filetype html,xml,xsl,php source ~/.config/nvim/scripts/closetag.vim
+au Filetype rust source ~/.config/nvim/scripts/spacetab-rust.lua
+au Filetype javascript,typescript source ~/.config/nvim/scripts/spacetab-js.lua
