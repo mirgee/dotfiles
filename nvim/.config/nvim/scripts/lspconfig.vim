@@ -122,7 +122,15 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 
 lspconfig.terraformls.setup{}
 
-lspconfig.lua_ls.setup{}
+lspconfig.lua_ls.setup{
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {'vim'},
+      },
+    },
+  },
+}
 
 lspconfig.solc.setup{
     on_attach = on_attach,
