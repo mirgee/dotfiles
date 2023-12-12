@@ -3,8 +3,6 @@ vim.g.mapleader = ' '
 -- Editor settings
 vim.cmd('filetype plugin indent on')
 vim.cmd('colorscheme gruvbox')
-vim.cmd('syntax on')
-vim.cmd('set shell=/bin/bash')
 
 -- Completion options
 vim.o.completeopt = 'menuone,noinsert,noselect'

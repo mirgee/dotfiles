@@ -12,20 +12,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- { "machakann/vim-highlightedyank" },
-  -- { "editorconfig/editorconfig-vim" },
-  -- { "junegunn/fzf", build = './install --all', dir = '~/.fzf' },
-  -- { "junegunn/fzf.vim" },
-  -- { "justinmk/vim-sneak" },
-  -- { "andymass/vim-matchup" },
-
-  -- { "rhysd/vim-clang-format" },
-  -- { "mhanberg/elixir.nvim", branch = "main" },
-  -- { "elixir-editors/vim-elixir" },
-  -- { "vim-python/python-syntax" },
-  -- { "fatih/vim-go" },
-  -- { "plasticboy/vim-markdown" },
-  -- { "cespare/vim-toml", branch = "main" },
   { "hashivim/vim-terraform" },
   { "rust-lang/rust.vim" },
   { "simrat39/rust-tools.nvim" },
@@ -55,13 +41,12 @@ require("lazy").setup({
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
 
-  -- { "nvim-lua/lsp_extensions.nvim" },
-  { "neovim/nvim-lspconfig" },
   { "hrsh7th/cmp-nvim-lsp", branch = "main" },
   { "hrsh7th/cmp-buffer", branch = "main" },
   { "hrsh7th/cmp-path", branch = "main" },
-  { "hrsh7th/nvim-cmp", branch = "main" },
   { "hrsh7th/cmp-vsnip", branch = "main" },
+  { "hrsh7th/nvim-cmp", branch = "main" },
   { "hrsh7th/vim-vsnip" },
+  { "neovim/nvim-lspconfig" },
   { "ray-x/lsp_signature.nvim" },
 })
