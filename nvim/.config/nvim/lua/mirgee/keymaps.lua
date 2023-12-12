@@ -60,9 +60,5 @@ vim.api.nvim_set_keymap('i', '<F1>', '<Esc>', map_options)
 -- Toggle background color
 vim.api.nvim_set_keymap('n', '<Leader>bg', ':let &background = (&background == "dark" ? "light" : "dark")<CR>', map_options)
 
--- NvimTree mappings
-vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', map_options)
-vim.api.nvim_set_keymap('n', '<leader>nf', ':NvimTreeFindFile<CR>', map_options)
-
 -- Show hidden characters
 vim.o.listchars = 'nbsp:¬,extends:»,precedes:«,trail:•'

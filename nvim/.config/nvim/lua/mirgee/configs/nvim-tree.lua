@@ -117,3 +117,7 @@ end
 require("nvim-tree").setup({
   on_attach = on_attach,
 })
+
+-- NvimTree mappings
+vim.api.nvim_set_keymap('n', '<leader>nn', ':NvimTreeToggle<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>nf', ':NvimTreeFindFile<CR>', { noremap = true })
