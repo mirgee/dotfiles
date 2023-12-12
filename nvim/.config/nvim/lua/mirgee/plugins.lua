@@ -50,7 +50,7 @@ require("lazy").setup({
       dependencies = { 'nvim-lua/plenary.nvim' }
   },
 
-  { "nvim-lua/lsp_extensions.nvim" },
+  -- { "nvim-lua/lsp_extensions.nvim" },
   { "neovim/nvim-lspconfig" },
   { "hrsh7th/cmp-nvim-lsp", branch = "main" },
   { "hrsh7th/cmp-buffer", branch = "main" },

@@ -55,14 +55,21 @@ end
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "rust",
     callback = function()
-        source_lua_file(vim.fn.expand("~/.config/nvim/lua/mirgee/spacetabs/spacetab-rust.lua"))
+        vim.opt.shiftwidth = 4
+        vim.opt.softtabstop = 4
+        vim.opt.tabstop = 4
+        vim.opt.expandtab = true
+        vim.opt.colorcolumn = "120"
     end,
 })
 
--- JavaScript and TypeScript code style rules
 vim.api.nvim_create_autocmd("FileType", {
     pattern = {"javascript", "typescript"},
     callback = function()
-        source_lua_file(vim.fn.expand("~/.config/nvim/lua/mirgee/spacetabs/spacetab-js.lua"))
+        vim.opt_local.tabstop = 2
+        vim.opt_local.softtabstop = 2
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.expandtab = true
+        vim.opt_local.autoindent = true
     end,
 })
