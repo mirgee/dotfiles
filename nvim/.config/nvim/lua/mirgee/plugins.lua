@@ -38,16 +38,21 @@ require("lazy").setup({
   { "tpope/vim-fugitive" },
   { "tpope/vim-surround" },
   { "lewis6991/gitsigns.nvim" },
-  { "itchyny/lightline.vim" },
-  { "zbirenbaum/copilot.lua" },
+  { "github/copilot.vim" },
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
+  },
 
   { "gruvbox-community/gruvbox", branch = "master" },
-  { "nvim-tree/nvim-web-devicons", lazy = true },
-  { "nvim-tree/nvim-tree.lua" },
+  {
+    'nvim-tree/nvim-tree.lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' }
+  },
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
-      dependencies = { 'nvim-lua/plenary.nvim' }
+    dependencies = { 'nvim-lua/plenary.nvim' }
   },
 
   -- { "nvim-lua/lsp_extensions.nvim" },

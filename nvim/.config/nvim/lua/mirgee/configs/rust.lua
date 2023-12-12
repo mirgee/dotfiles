@@ -12,3 +12,5 @@ vim.g.rust_clip_command = 'xclip -selection clipboard'
 
 -- Environment variable
 vim.env.CARGO_TARGET_DIR = '/tmp/rust-analyzer'
+
+vim.g.rustfmt_autosave = 1

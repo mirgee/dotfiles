@@ -95,7 +95,7 @@ lspconfig.vimls.setup { on_attach = on_attach, }
 
 lspconfig.pylsp.setup { on_attach = on_attach, }
 
-lspconfig.elixirls.setup { on_attach = on_attach, cmd = { "/Users/ab006rh/elixir-ls/language_server.sh" }; }
+lspconfig.elixirls.setup { on_attach = on_attach, }
 
 lspconfig.eslint.setup { on_attach = on_attach  }
 

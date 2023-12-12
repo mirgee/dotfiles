@@ -1,0 +1,7 @@
+require('mirgee.configs.lspconfig')
+require('mirgee.configs.copilot')
+require('mirgee.configs.rust')
+require('mirgee.configs.nvim-tree')
+require('mirgee.configs.gitsigns')
+require('mirgee.configs.telescope')
+require('mirgee.configs.lualine')

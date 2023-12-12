@@ -50,13 +50,6 @@ vim.o.ignorecase = true
 vim.o.smartcase = false
 vim.o.gdefault = true
 
--- Plugin-specific configurations
-vim.g['sneak#s_next'] = 1
-vim.g.vim_markdown_new_list_item_indent = 0
-vim.g.vim_markdown_auto_insert_bullets = 0
-vim.g.vim_markdown_frontmatter = 1
-vim.g.rustfmt_autosave = 1
-
 -- No more beeps
 vim.o.vb = true
 vim.o.t_vb = ''
