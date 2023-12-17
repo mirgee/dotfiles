@@ -42,6 +42,11 @@ vim.o.expandtab = true
 -- Wrapping and formatting options
 vim.o.formatoptions = 'tcqrnb'
 
+-- Project specific settings
+vim.o.exrc = true
+vim.o.secure = true
+vim.lsp.log_level = 'debug'
+
 -- Search settings
 vim.o.incsearch = false
 vim.o.ignorecase = true

@@ -25,6 +25,7 @@ require("lazy").setup({
   { "tpope/vim-surround" },
   { "lewis6991/gitsigns.nvim" },
   { "github/copilot.vim" },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' }
