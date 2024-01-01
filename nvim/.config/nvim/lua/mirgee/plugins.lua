@@ -41,6 +41,14 @@ require("lazy").setup({
     branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
+  {
+    "jiaoshijie/undotree",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = true,
+    keys = { -- load the plugin only when using it's keybinding:
+      { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
+    },
+  },
 
   { "hrsh7th/cmp-nvim-lsp", branch = "main" },
   { "hrsh7th/cmp-buffer", branch = "main" },
