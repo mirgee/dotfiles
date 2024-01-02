@@ -49,6 +49,16 @@ require("lazy").setup({
       { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
     },
   },
+  {
+    "olrtg/nvim-emmet",
+    config = function()
+      vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+  },
 
   { "hrsh7th/cmp-nvim-lsp", branch = "main" },
   { "hrsh7th/cmp-buffer", branch = "main" },
