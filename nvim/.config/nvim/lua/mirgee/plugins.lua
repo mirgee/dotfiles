@@ -25,7 +25,6 @@ require("lazy").setup({
   { "tpope/vim-surround" },
   { "lewis6991/gitsigns.nvim" },
   { "github/copilot.vim" },
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' }
@@ -49,12 +48,7 @@ require("lazy").setup({
       { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
     },
   },
-  {
-    "olrtg/nvim-emmet",
-    config = function()
-      vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
-    end,
-  },
+  -- { "olrtg/nvim-emmet" },
   -- {
   --   "nvim-treesitter/nvim-treesitter",
   --   build = ":TSUpdate",
