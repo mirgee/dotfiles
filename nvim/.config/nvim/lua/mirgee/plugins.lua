@@ -58,12 +58,19 @@ require("lazy").setup({
    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
+  { "hrsh7th/nvim-cmp", branch = "main" },
   { "hrsh7th/cmp-nvim-lsp", branch = "main" },
   { "hrsh7th/cmp-buffer", branch = "main" },
   { "hrsh7th/cmp-path", branch = "main" },
-  { "hrsh7th/cmp-vsnip", branch = "main" },
-  { "hrsh7th/nvim-cmp", branch = "main" },
-  { "hrsh7th/vim-vsnip" },
+  { "saadparwaiz1/cmp_luasnip" },
+
+  {
+    "L3MON4D3/LuaSnip",
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    build = "make install_jsregexp",
+    dependencies = { "rafamadriz/friendly-snippets" },
+  },
+
   { "neovim/nvim-lspconfig" },
   { "ray-x/lsp_signature.nvim" },
 })
