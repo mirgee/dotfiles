@@ -38,7 +38,9 @@ require("lazy").setup({
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    }
   },
   {
     "jiaoshijie/undotree",
@@ -66,7 +68,7 @@ require("lazy").setup({
 
   {
     "L3MON4D3/LuaSnip",
-    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    version = "v2.*",
     build = "make install_jsregexp",
     dependencies = { "rafamadriz/friendly-snippets" },
   },
