@@ -35,6 +35,7 @@ require("lazy").setup({
     'nvim-tree/nvim-tree.lua',
     dependencies = { 'nvim-tree/nvim-web-devicons' }
   },
+
   {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
@@ -42,6 +43,7 @@ require("lazy").setup({
       'nvim-lua/plenary.nvim'
     }
   },
+
   {
     "jiaoshijie/undotree",
     dependencies = "nvim-lua/plenary.nvim",
