@@ -43,6 +43,17 @@ require("lazy").setup({
       'nvim-lua/plenary.nvim'
     }
   },
+  {
+    'nvim-telescope/telescope-frecency.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim' },
+    config = function()
+      require('telescope').load_extension 'frecency'
+    end,
+  },
+  {
+    "nvim-telescope/telescope-file-browser.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  },
 
   {
     "jiaoshijie/undotree",
@@ -53,15 +64,15 @@ require("lazy").setup({
     },
   },
   -- { "olrtg/nvim-emmet" },
-  -- {
-  --   "nvim-treesitter/nvim-treesitter",
-  --   build = ":TSUpdate",
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+  },
   {
    "folke/trouble.nvim",
    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
-
+  { "williamboman/mason.nvim" },
   { "hrsh7th/nvim-cmp", branch = "main" },
   { "hrsh7th/cmp-nvim-lsp", branch = "main" },
   { "hrsh7th/cmp-buffer", branch = "main" },

@@ -55,7 +55,6 @@ vim.o.gdefault = true
 
 -- No more beeps
 vim.o.vb = true
-vim.o.t_vb = ''
 
 -- Backspace behavior
 vim.o.backspace = '2'
