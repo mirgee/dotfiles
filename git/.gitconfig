@@ -44,6 +44,7 @@
   autosquash = true
 [merge]
   conflictstyle = diff3
+  tool = nvimdiff
 [rerere]
   enabled = true
 [log]
@@ -51,6 +52,7 @@
 [diff]
   algorithm = patience
   compactionHeuristic = true
+  tool = nvimdiff
 [credential]
   helper = store
 [help]
