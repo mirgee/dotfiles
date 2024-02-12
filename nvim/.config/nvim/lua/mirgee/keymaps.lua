@@ -1,14 +1,5 @@
 -- Ctrl+; as Esc
 local map_options = { noremap = true }
-vim.api.nvim_set_keymap('n', '<C-;>', '<Esc>', map_options)
-vim.api.nvim_set_keymap('i', '<C-;>', '<Esc>', map_options)
-vim.api.nvim_set_keymap('v', '<C-;>', '<Esc>', map_options)
-vim.api.nvim_set_keymap('s', '<C-;>', '<Esc>', map_options)
-vim.api.nvim_set_keymap('x', '<C-;>', '<Esc>', map_options)
-vim.api.nvim_set_keymap('c', '<C-;>', '<Esc>', map_options)
-vim.api.nvim_set_keymap('o', '<C-;>', '<Esc>', map_options)
-vim.api.nvim_set_keymap('l', '<C-;>', '<Esc>', map_options)
-vim.api.nvim_set_keymap('t', '<C-;>', '<Esc>', map_options)
 
 -- Quick-save
 vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', map_options)
