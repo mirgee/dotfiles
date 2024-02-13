@@ -52,5 +52,11 @@ ls.add_snippets("rust", {
     )
   ),
 
-  s("pd", fmt([[println!("{}: {{:?}}", {});]], { same(1), i(1) })),
+  s("dbg", fmt([[dbg!("{}: {{:?}}", {});]], { same(1), i(1) })),
+
+  s(
+    "tostr",
+    fmt([[serde_json::to_string(&{})?]], i(0))
+  ),
+
 })
