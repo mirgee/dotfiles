@@ -75,3 +75,12 @@ vim.api.nvim_set_keymap('n', '<Leader>bg', ':let &background = (&background == "
 
 -- Show hidden characters
 vim.o.listchars = 'nbsp:¬,extends:»,precedes:«,trail:•'
+
+function InsertCleanSearchRegisterContent()
+    local search_content = vim.fn.getreg('/')
+    local clean_content = search_content:gsub('\\<', ''):gsub('\\>', '')
+    vim.api.nvim_put({clean_content}, '', false, true)
+end
+
+vim.api.nvim_set_keymap('i', '<C-R><C-W>', '<C-O>:lua InsertCleanSearchRegisterContent()<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '"<C-W>', ':lua InsertCleanSearchRegisterContent()<CR>', {noremap = true, silent = true})

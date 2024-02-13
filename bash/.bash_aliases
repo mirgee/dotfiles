@@ -95,3 +95,4 @@ alias indylibs-list="ls -lah /usr/local/lib/libindy.dylib /usr/local/lib/libnull
 alias indylibs-list-avaliable="ls -lah /usr/local/lib/provisioned"
 alias activate-proxy="export HTTP_PROXY=bc-vip.intra.absa.co.za:8080 && export HTTPS_PROXY=bc-vip.intra.absa.co.za:8080 && export http_proxy=bc-vip.intra.absa.co.za:8080 && export https_proxy=bc-vip.intra.absa.co.za:8080"
 alias deactivate-proxy="unset HTTP_PROXY && unset HTTPS_PROXY && unset http_proxy && unset https_proxy"
+alias cargo-check-tests-all-features="cargo check --tests --all-features"
