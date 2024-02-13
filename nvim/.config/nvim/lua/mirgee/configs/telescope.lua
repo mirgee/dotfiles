@@ -177,6 +177,10 @@ function M.live_grep()
   }
 end
 
+function M.grep_string(opts)
+  require("telescope.builtin").grep_string(opts)
+end
+
 function M.grep_prompt()
   require("telescope.builtin").grep_string {
     path_display = { "shorten" },
