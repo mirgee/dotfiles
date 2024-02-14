@@ -110,6 +110,9 @@ export GPG_TTY=$(tty)
 if [ -f "$HOME/.bashrc_env" ]; then
     source "$HOME/.bashrc_env"
 fi
+if [ -f "$HOME/.bash_completions" ]; then
+    source "$HOME/.bash_completions"
+fi
 . "$HOME/.cargo/env"
 
 export NVM_DIR="$HOME/.nvm"
