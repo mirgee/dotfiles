@@ -20,6 +20,8 @@ vim.o.wrap = true
 vim.o.joinspaces = false
 vim.o.signcolumn = 'yes'
 
+vim.o.shell = 'bash';
+
 -- Splits behavior
 vim.o.splitright = true
 vim.o.splitbelow = true
