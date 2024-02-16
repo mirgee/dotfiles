@@ -60,7 +60,12 @@ vim.keymap.set('n', '<leader>fy', builtin.lsp_dynamic_workspace_symbols, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fs', builtin.search_history, {})
 vim.keymap.set('n', '<leader>fc', builtin.git_commits, {})
-vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
+vim.keymap.set('n', '<leader>fo', function ()
+    builtin.oldfiles({
+        only_cwd=true
+    })
+end, {})
+vim.keymap.set('n', '<leader>fO', builtin.oldfiles, {})
 vim.keymap.set('n', '<leader>fr', builtin.resume, {})
 
 vim.api.nvim_set_keymap(

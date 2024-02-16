@@ -18,6 +18,7 @@ ls.config.set_config {
   },
 }
 
+-- TODO: Doesn't work in iTerm currently
 -- vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
 vim.keymap.set({"i", "s"}, "<C-S>l", function() ls.jump( 1) end, {silent = true})
 vim.keymap.set({"i", "s"}, "<C-S>j", function() ls.jump(-1) end, {silent = true})
