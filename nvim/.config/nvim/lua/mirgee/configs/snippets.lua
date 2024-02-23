@@ -1,36 +1,39 @@
-local ls = require "luasnip"
+local ls = require("luasnip")
 
-local types = require "luasnip.util.types"
+local types = require("luasnip.util.types")
 
-ls.config.set_config {
-  history = false,
+ls.config.set_config({
+	history = false,
 
-  updateevents = "TextChanged,TextChangedI",
+	updateevents = "TextChanged,TextChangedI",
 
-  enable_autosnippets = true,
+	enable_autosnippets = true,
 
-  ext_opts = {
-    [types.choiceNode] = {
-      active = {
-        virt_text = { { " « ", "NonTest" } },
-      },
-    },
-  },
-}
+	ext_opts = {
+		[types.choiceNode] = {
+			active = {
+				virt_text = { { " « ", "NonTest" } },
+			},
+		},
+	},
+})
 
--- vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
-vim.keymap.set({"i", "s"}, "<leader>sn", function() ls.jump( 1) end, {silent = true})
-vim.keymap.set({"i", "s"}, "<leader>sp", function() ls.jump(-1) end, {silent = true})
+-- vim.keymap.set({"i"}, "<C-h>", function() ls.expand() end, {silent = true})
+vim.keymap.set({ "i", "s" }, "<C-h>l", function()
+	ls.jump(1)
+end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-h>h", function()
+	ls.jump(-1)
+end, { silent = true })
 
-
-vim.keymap.set({"i", "s"}, "<leader>ss", function()
+vim.keymap.set({ "i", "s" }, "<C-h>t", function()
 	if ls.choice_active() then
 		ls.change_choice(1)
 	end
-end, {silent = true})
+end, { silent = true })
 
 -- To load friendly-snippets
 require("luasnip.loaders.from_vscode").lazy_load()
 
 -- TODO: Autoload those
-require "mirgee.snippets.rust"
+require("mirgee.snippets.rust")

@@ -1,6 +1,4 @@
 -- Enable autosave on RustFmt
-vim.g.rustfmt_autosave = 1
-
 -- Emit files for RustFmt
 vim.g.rustfmt_emit_files = 1
 
@@ -8,7 +6,7 @@ vim.g.rustfmt_emit_files = 1
 vim.g.rustfmt_fail_silently = 0
 
 -- Set the Rust clipboard command
-vim.g.rust_clip_command = 'xclip -selection clipboard'
+vim.g.rust_clip_command = "xclip -selection clipboard"
 
 -- Environment variable
-vim.env.CARGO_TARGET_DIR = '/tmp/rust-analyzer'
+vim.env.CARGO_TARGET_DIR = "/tmp/rust-analyzer"
