@@ -12,6 +12,16 @@ require("telescope").setup({
         ["<C-Up>"] = require("telescope.actions").cycle_history_prev,
       },
     },
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden",
+    },
   },
   pickers = {
     -- Default configuration for builtin pickers goes here:
@@ -55,7 +65,7 @@ vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fh", function()
   builtin.find_files({
-    hidden = true
+    hidden = true,
   })
 end, {})
 vim.keymap.set("n", "<leader>fr", function()

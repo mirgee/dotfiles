@@ -102,6 +102,7 @@ export TERM=screen-256color
 
 export OPENAI_API_KEY=''
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.luarocks/bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
