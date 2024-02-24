@@ -64,6 +64,7 @@ require("lazy").setup({
     branch = "main",
     dependencies = {
       { "hrsh7th/cmp-nvim-lsp",    branch = "main" },
+      { "hrsh7th/cmp-nvim-lua",    branch = "main" },
       { "hrsh7th/cmp-buffer",      branch = "main" },
       { "hrsh7th/cmp-path",        branch = "main" },
       { "saadparwaiz1/cmp_luasnip" },

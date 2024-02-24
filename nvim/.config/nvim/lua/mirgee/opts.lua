@@ -33,7 +33,8 @@ vim.o.undofile = true
 -- Wildmenu settings
 vim.o.wildmenu = true
 vim.o.wildmode = 'list:longest'
-vim.o.wildignore = '.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor'
+vim.o.wildignore =
+'.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor'
 
 -- Tab settings
 vim.o.shiftwidth = 2
@@ -75,7 +76,7 @@ vim.o.laststatus = 2
 
 -- Line number settings
 vim.wo.relativenumber = true -- Relative line numbers
-vim.wo.number = true -- Also show current absolute line
+vim.wo.number = true         -- Also show current absolute line
 
 -- Diff options
 vim.opt.diffopt:append('iwhite') -- No whitespace in vimdiff
