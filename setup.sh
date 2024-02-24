@@ -32,5 +32,6 @@ stow_files "bash"
 stow_files "$ENVIRONMENT"
 stow_files "git"
 stow_files "nvim"
+stow_files "tmux"
 
 echo "Dotfiles setup complete for the $ENVIRONMENT environment."
