@@ -8,8 +8,9 @@ return {
   config = function()
     local ls = require("luasnip")
     local types = require("luasnip.util.types")
-    require("luasnip.loaders.from_vscode").lazy_load()
-    require("mirgee.snippets.rust") -- TODO: Autoload those
+
+    require("luasnip.loaders.from_vscode").lazy_load() -- To load friendly-snippets
+    require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/lua/mirgee/snippets" } })
 
     ls.config.set_config({
       history = false,
