@@ -1,11 +1,8 @@
-vim.g.mapleader = ' '
-
 -- Editor settings
-vim.cmd('filetype plugin indent on')
-vim.cmd('colorscheme gruvbox')
+vim.cmd("filetype plugin indent on")
 
 -- Completion options
-vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.o.completeopt = "menuone,noinsert,noselect"
 
 -- Other options
 vim.o.updatetime = 4000
@@ -14,27 +11,27 @@ vim.o.autowrite = false
 vim.o.hidden = true
 vim.o.showmode = false
 vim.o.timeoutlen = 1000
-vim.o.encoding = 'utf-8'
+vim.o.encoding = "utf-8"
 vim.o.scrolloff = 2
 vim.o.wrap = true
 vim.o.joinspaces = false
-vim.o.signcolumn = 'yes'
+vim.o.signcolumn = "yes"
 
-vim.o.shell = 'bash';
+vim.o.shell = "bash"
 
 -- Splits behavior
 vim.o.splitright = true
 vim.o.splitbelow = true
 
 -- Permanent undo
-vim.o.undodir = vim.fn.expand('~/.vimdid')
+vim.o.undodir = vim.fn.expand("~/.vimdid")
 vim.o.undofile = true
 
 -- Wildmenu settings
 vim.o.wildmenu = true
-vim.o.wildmode = 'list:longest'
+vim.o.wildmode = "list:longest"
 vim.o.wildignore =
-'.hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor'
+  ".hg,.svn,*~,*.png,*.jpg,*.gif,*.settings,Thumbs.db,*.min.js,*.swp,publish/*,intermediate/*,*.o,*.hi,Zend,vendor"
 
 -- Tab settings
 vim.o.shiftwidth = 2
@@ -43,12 +40,12 @@ vim.o.tabstop = 2
 vim.o.expandtab = true
 
 -- Wrapping and formatting options
-vim.o.formatoptions = 'tcqrnb'
+vim.o.formatoptions = "tcqrnb"
 
 -- Project specific settings
 vim.o.exrc = true
 vim.o.secure = true
-vim.lsp.log_level = 'debug'
+vim.lsp.log_level = "debug"
 
 -- Search settings
 vim.o.incsearch = false
@@ -60,7 +57,7 @@ vim.o.gdefault = true
 vim.o.vb = true
 
 -- Backspace behavior
-vim.o.backspace = '2'
+vim.o.backspace = "2"
 
 -- TTY fast for faster terminal redrawing
 vim.o.ttyfast = true
@@ -76,34 +73,34 @@ vim.o.laststatus = 2
 
 -- Line number settings
 vim.wo.relativenumber = true -- Relative line numbers
-vim.wo.number = true         -- Also show current absolute line
+vim.wo.number = true -- Also show current absolute line
 
 -- Diff options
-vim.opt.diffopt:append('iwhite') -- No whitespace in vimdiff
-vim.opt.diffopt:append('algorithm:patience')
-vim.opt.diffopt:append('indent-heuristic')
+vim.opt.diffopt:append("iwhite") -- No whitespace in vimdiff
+vim.opt.diffopt:append("algorithm:patience")
+vim.opt.diffopt:append("indent-heuristic")
 
 -- Color column
-vim.wo.colorcolumn = '0' -- Don't show a colored column
+vim.wo.colorcolumn = "0" -- Don't show a colored column
 
 -- Show command in status line
 vim.o.showcmd = true
 
 -- Mouse support
-vim.o.mouse = 'a' -- Enable mouse usage (all modes) in terminals
+vim.o.mouse = "a" -- Enable mouse usage (all modes) in terminals
 
 -- Short messages
-vim.opt.shortmess:append('c') -- Don't show |ins-completion-menu| messages
+vim.opt.shortmess:append("c") -- Don't show |ins-completion-menu| messages
 
 -- Background color
-vim.o.background = 'light'
+vim.o.background = "light"
 
 -- View options
-vim.o.viewoptions = 'cursor,folds'
+vim.o.viewoptions = "cursor,folds"
 
 -- Fold settings
 vim.wo.foldlevel = 99
-vim.wo.foldmethod = 'indent' -- Enable folding
+vim.wo.foldmethod = "indent" -- Enable folding
 vim.wo.foldenable = false
 
 -- True color support
