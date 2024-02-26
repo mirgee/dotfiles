@@ -1,9 +1,11 @@
 local lspconfig = require("lspconfig")
 
 local rt = require("rust-tools")
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-rt.setup({
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+
+require("rust-tools").setup({
   server = {
     flags = {
       debounce_text_changes = 150,
@@ -26,12 +28,6 @@ rt.setup({
     },
     capabilities = capabilities,
   },
-})
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  virtual_text = true,
-  signs = true,
-  update_in_insert = true,
 })
 
 lspconfig.vimls.setup({})

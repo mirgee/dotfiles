@@ -5,6 +5,12 @@ return {
     { "ray-x/lsp_signature.nvim" },
   },
   config = function()
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = true,
+      signs = true,
+      update_in_insert = true,
+    })
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
@@ -25,10 +31,22 @@ return {
           vim.lsp.buf.code_action({ context = { only = { "quickfix", "refactor", "source" } } })
         end, "[C]ode [A]ction")
         map("<space>e", vim.diagnostic.open_float, "Open float")
-        -- map("<space>g", vim.diagnostic.set_loclist, "Set loclist")
         map("[d", vim.diagnostic.goto_prev, "Goto next diagnostic")
         map("]d", vim.diagnostic.goto_next, "Goto previous diagnostic")
         map("<space>f", vim.lsp.buf.format, "Format")
+
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and client.server_capabilities.documentHighlightProvider then
+          vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+            buffer = event.buf,
+            callback = vim.lsp.buf.document_highlight,
+          })
+
+          vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+            buffer = event.buf,
+            callback = vim.lsp.buf.clear_references,
+          })
+        end
       end,
     })
   end,
