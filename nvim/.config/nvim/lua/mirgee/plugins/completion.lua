@@ -6,7 +6,12 @@ return {
     { "hrsh7th/cmp-nvim-lua", branch = "main" },
     { "hrsh7th/cmp-buffer", branch = "main" },
     { "hrsh7th/cmp-path", branch = "main" },
-    { "zbirenbaum/copilot-cmp" },
+    {
+      "zbirenbaum/copilot-cmp",
+      config = function()
+        require("copilot_cmp").setup()
+      end,
+    },
     { "saadparwaiz1/cmp_luasnip" },
     {
       "L3MON4D3/LuaSnip",

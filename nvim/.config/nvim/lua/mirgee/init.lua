@@ -21,6 +21,8 @@ require("lazy").setup({
   { "tpope/vim-surround" },
   { "lewis6991/gitsigns.nvim" },
 
+  { "folke/neodev.nvim", opts = {} },
+
   { "gruvbox-community/gruvbox", branch = "master" },
 
   { import = "mirgee.plugins" },
