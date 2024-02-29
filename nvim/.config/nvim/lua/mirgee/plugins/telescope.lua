@@ -3,10 +3,6 @@ return {
   branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    {
-      "nvim-telescope/telescope-file-browser.nvim",
-      dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    },
   },
   opts = {
     defaults = {
@@ -48,19 +44,6 @@ return {
       --   extension_config_key = value,
       -- }
       -- please take a look at the readme of the extension you want to configure
-      file_browser = {
-        theme = "ivy",
-        -- disables netrw and use telescope-file-browser in its place
-        hijack_netrw = true,
-        mappings = {
-          ["i"] = {
-            -- your custom insert mode mappings
-          },
-          ["n"] = {
-            -- your custom normal mode mappings
-          },
-        },
-      },
     },
   },
   config = function()
@@ -90,14 +73,6 @@ return {
     end, {})
     vim.keymap.set("n", "<leader>fO", builtin.oldfiles, {})
     vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-
-    vim.api.nvim_set_keymap("n", "<leader>fe", ":Telescope file_browser<CR>", { noremap = true })
-    vim.api.nvim_set_keymap(
-      "n",
-      "<space>fE",
-      ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
-      { noremap = true }
-    )
 
     vim.keymap.set("n", "<leader>wg", builtin.live_grep, {})
     vim.keymap.set("n", "<leader>wt", builtin.help_tags, {})
