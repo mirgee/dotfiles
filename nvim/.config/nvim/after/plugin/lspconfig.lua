@@ -45,15 +45,14 @@ lspconfig.terraformls.setup({})
 lspconfig.lua_ls.setup({
   settings = {
     Lua = {
-      diagnostics = {
-        globals = {
-          "vim",
-          "describe",
-          "it",
-          "assert",
-          "before_each",
-          "after_each",
-          "pending",
+      runtime = {
+        version = "LuaJIT",
+      },
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME,
+          "~/.local/share/nvim/lazy/plenary.nvim/lua",
         },
       },
     },

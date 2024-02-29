@@ -54,7 +54,7 @@ vim.api.nvim_set_keymap("t", "<A-j>", "<C-\\><C-N><C-w>j", map_options)
 vim.api.nvim_set_keymap("t", "<A-k>", "<C-\\><C-N><C-w>k", map_options)
 vim.api.nvim_set_keymap("t", "<A-l>", "<C-\\><C-N><C-w>l", map_options)
 vim.cmd([[
-  tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+  tnoremap <expr> <C-\><C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 ]])
 
 -- Insert-mode mappings

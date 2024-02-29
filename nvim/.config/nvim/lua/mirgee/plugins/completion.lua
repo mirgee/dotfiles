@@ -25,14 +25,13 @@ return {
 
     cmp.setup({
       completion = { completeopt = "menu,menuone,noinsert" },
-
       mapping = {
         ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert, "i", "c" }),
         ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert, "i", "c" }),
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-u>"] = cmp.mapping.scroll_docs(4),
         -- ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-        -- ["<C-e>"] = cmp.mapping.abort(),
+        ["<C-e>"] = cmp.mapping.abort(),
 
         ["<C-y>"] = cmp.mapping(
           cmp.mapping.confirm({
@@ -67,11 +66,11 @@ return {
       },
 
       sources = cmp.config.sources({
-        { name = "copilot" },
+        { name = "path" },
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
-        { name = "path" },
+        { name = "copilot" },
         { name = "buffer", keyword_length = 5 },
       }),
 
