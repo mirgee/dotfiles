@@ -1,7 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
-    { "williamboman/mason.nvim" },
     { "ray-x/lsp_signature.nvim" },
   },
   config = function()
