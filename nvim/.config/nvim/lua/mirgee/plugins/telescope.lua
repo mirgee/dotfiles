@@ -1,6 +1,5 @@
 return {
   "nvim-telescope/telescope.nvim",
-  branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
@@ -75,13 +74,11 @@ return {
     vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 
     vim.keymap.set("n", "<leader>wg", builtin.live_grep, {})
+    vim.keymap.set("n", "<leader>w/", builtin.current_buffer_fuzzy_find, {})
     vim.keymap.set("n", "<leader>wt", builtin.help_tags, {})
     vim.keymap.set("n", "<leader>wh", builtin.search_history, {})
     vim.keymap.set("n", "<leader>R", builtin.resume, {})
 
     vim.keymap.set("n", "<leader>ly", builtin.lsp_dynamic_workspace_symbols, {})
-    vim.keymap.set("n", "<leader>ld", builtin.lsp_definitions, {})
-    vim.keymap.set("n", "<leader>lr", builtin.lsp_references, {})
-    vim.keymap.set("n", "<leader>li", builtin.lsp_implementations, {})
   end,
 }
