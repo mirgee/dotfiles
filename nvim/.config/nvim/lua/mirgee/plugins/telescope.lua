@@ -80,5 +80,6 @@ return {
     vim.keymap.set("n", "<leader>R", builtin.resume, {})
 
     vim.keymap.set("n", "<leader>ly", builtin.lsp_dynamic_workspace_symbols, {})
+    vim.keymap.set("n", "<leader>ld", builtin.diagnostics, {})
   end,
 }

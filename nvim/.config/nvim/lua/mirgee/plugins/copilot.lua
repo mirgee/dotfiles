@@ -44,4 +44,8 @@ return {
     copilot_node_command = "node", -- Node.js version must be > 18.x
     server_opts_overrides = {},
   },
+  init = function()
+    vim.api.nvim_set_keymap("n", "<M-p>", ":Copilot toggle<CR>", { noremap = true })
+    vim.api.nvim_set_keymap('i', '<M-p>', '<ESC>:Copilot toggle<CR>a', {noremap = true})
+  end,
 }
