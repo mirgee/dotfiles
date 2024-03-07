@@ -8,7 +8,7 @@ return {
         desc = "[DAP] " .. desc
       end
 
-      vim.keymap.set("n", lhs, rhs, { silent = true, desc = desc })
+      vim.keymap.set("n", lhs, rhs, { desc = desc })
     end
 
     map("<F1>", dap.step_back, "step_back")
