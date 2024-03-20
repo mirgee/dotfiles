@@ -103,3 +103,36 @@ lspconfig.emmet_language_server.setup({
     variables = {},
   },
 })
+
+lspconfig.jdtls.setup {
+  cmd = { "jdtls", "-configuration", "~/.cache/jdtls/config", "-data", "~/.cache/jdtls/workspace" },
+  filetypes = { "java" },
+  init_options = {
+    jvm_args = {},
+    workspace = "/home/user/.cache/jdtls/workspace",
+    root_dir = {
+      -- Single-module projects
+      {
+        'build.xml',             -- Ant
+        'pom.xml',               -- Maven
+        'settings.gradle',       -- Gradle
+        'settings.gradle.kts',   -- Gradle
+      },
+      -- Multi-module projects
+      { 'build.gradle', 'build.gradle.kts' },
+    } or vim.fn.getcwd()
+  },
+  single_file_support = true
+}
+
+lspconfig.gopls.setup({
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+})
