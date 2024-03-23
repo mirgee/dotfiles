@@ -69,6 +69,8 @@ lspconfig.solidity.setup({
   -- },
 })
 
+-- require 'lspconfig'.solidity_ls.setup {}
+
 lspconfig.emmet_language_server.setup({
   filetypes = {
     "css",
@@ -113,10 +115,10 @@ lspconfig.jdtls.setup {
     root_dir = {
       -- Single-module projects
       {
-        'build.xml',             -- Ant
-        'pom.xml',               -- Maven
-        'settings.gradle',       -- Gradle
-        'settings.gradle.kts',   -- Gradle
+        'build.xml',           -- Ant
+        'pom.xml',             -- Maven
+        'settings.gradle',     -- Gradle
+        'settings.gradle.kts', -- Gradle
       },
       -- Multi-module projects
       { 'build.gradle', 'build.gradle.kts' },
