@@ -1,7 +1,0 @@
-
-alias tfubuntussh="ssh ubuntu@`cat terraform.tfstate |  jq -r '.resources[]  | select(.type == \"aws_instance\") | .instances[0].attributes.public_ip'`"
-alias tfec2printip="cat terraform.tfstate |  jq -r '.resources[]  | select(.type == \"aws_instance\") | .instances[0].attributes.public_ip'"
-alias run-swagger="docker run --platform linux/arm64/v8 --name swagger -d -p 6060:8080 swaggerapi/swagger-editor"
-
-alias activate-proxy="export HTTP_PROXY=bc-vip.intra.absa.co.za:8080 && export HTTPS_PROXY=bc-vip.intra.absa.co.za:8080 && export http_proxy=bc-vip.intra.absa.co.za:8080 && export https_proxy=bc-vip.intra.absa.co.za:8080"
-alias deactivate-proxy="unset HTTP_PROXY && unset HTTPS_PROXY && unset http_proxy && unset https_proxy"
