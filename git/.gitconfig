@@ -36,6 +36,7 @@
   ff = only
 [push]
   default = simple
+  recurseSubmodules = check
 [fetch]
   prune = true
 [rebase]
