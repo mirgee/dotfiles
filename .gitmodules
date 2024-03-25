@@ -1,3 +1,4 @@
 [submodule "work"]
 	path = work
 	url = https://github.com/absa-group/work-config.git
+  branch = main
