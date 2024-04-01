@@ -22,6 +22,9 @@ require("rust-tools").setup({
         server = {
           extraEnv = {},
         },
+        check = {
+          allTargets = false
+        }
       },
     },
     capabilities = capabilities,
@@ -61,13 +64,13 @@ lspconfig.solc.setup({
   root_dir = lspconfig.util.root_pattern("hardhat.config.*", ".git"),
 })
 
-lspconfig.solidity.setup({
-  capabilities = capabilities,
-  -- settings = {
-  --   -- example of global remapping
-  --   solidity = { includePath = '', remapping = { ["@OpenZeppelin/"] = 'OpenZeppelin/openzeppelin-contracts@4.6.0/' } }
-  -- },
-})
+-- lspconfig.solidity.setup({
+--   capabilities = capabilities,
+--   -- settings = {
+--   --   -- example of global remapping
+--   --   solidity = { includePath = '', remapping = { ["@OpenZeppelin/"] = 'OpenZeppelin/openzeppelin-contracts@4.6.0/' } }
+--   -- },
+-- })
 
 -- require 'lspconfig'.solidity_ls.setup {}
 
