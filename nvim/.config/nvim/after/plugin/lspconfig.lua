@@ -60,9 +60,9 @@ lspconfig.lua_ls.setup({
   },
 })
 
-lspconfig.solc.setup({
-  root_dir = lspconfig.util.root_pattern("hardhat.config.*", ".git"),
-})
+-- lspconfig.solc.setup({
+--   root_dir = lspconfig.util.root_pattern("hardhat.config.*", ".git"),
+-- })
 
 -- lspconfig.solidity.setup({
 --   capabilities = capabilities,
@@ -73,6 +73,8 @@ lspconfig.solc.setup({
 -- })
 
 -- require 'lspconfig'.solidity_ls.setup {}
+
+lspconfig.solidity_ls_nomicfoundation.setup{}
 
 lspconfig.emmet_language_server.setup({
   filetypes = {
