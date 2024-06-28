@@ -73,7 +73,11 @@ return {
     vim.keymap.set("n", "<leader>fO", builtin.oldfiles, {})
     vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 
-    vim.keymap.set("n", "<leader>wg", builtin.live_grep, {})
+    vim.keymap.set("n", "<leader>wg", function ()
+      builtin.live_grep({
+        hidden = true
+      })
+    end, {})
     vim.keymap.set("n", "<leader>w/", builtin.current_buffer_fuzzy_find, {})
     vim.keymap.set("n", "<leader>wt", builtin.help_tags, {})
     vim.keymap.set("n", "<leader>wh", builtin.search_history, {})
