@@ -23,7 +23,7 @@ require("rust-tools").setup({
           extraEnv = {},
         },
         check = {
-          allTargets = false
+          allTargets = true
         }
       },
     },
@@ -124,3 +124,5 @@ lspconfig.gopls.setup({
     },
   },
 })
+
+require'lspconfig'.bashls.setup{}

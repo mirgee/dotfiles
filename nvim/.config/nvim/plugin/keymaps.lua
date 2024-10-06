@@ -1,7 +1,7 @@
 local map_options = { noremap = true }
 
 -- Quick-save
-vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", map_options)
+vim.api.nvim_set_keymap("n", "<leader>s", ":w<CR>", map_options)
 
 -- Ctrl+h to stop searching
 vim.api.nvim_set_keymap("v", "<C-h>", ":nohlsearch<CR>", map_options)
