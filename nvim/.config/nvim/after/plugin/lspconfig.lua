@@ -39,7 +39,7 @@ lspconfig.elixirls.setup({})
 
 lspconfig.eslint.setup({})
 
-lspconfig.tsserver.setup({})
+lspconfig.ts_ls.setup({})
 
 lspconfig.terraformls.setup({})
 
