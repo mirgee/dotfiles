@@ -33,7 +33,43 @@ require("rust-tools").setup({
 
 lspconfig.vimls.setup({})
 
-lspconfig.pylsp.setup({})
+lspconfig.pylsp.setup({
+  settings = {
+    pylsp = {
+      plugins = {
+        pylsp_mypy = {
+          enabled = true,
+          live_mode = false,
+          report_progress = false,
+          strict = false,
+        },
+
+        rope_autoimport = { enabled = true },
+        rope_completion = { enabled = true },
+
+        flake8 = {
+          enabled = true,
+          maxLineLength = 120,
+        },
+
+        pyls_isort = { enabled = true },
+
+        pylsp_black = {
+          enabled = true,
+          line_length = 120,
+        },
+
+        jedi_completion = { enabled = true, fuzzy = true },
+        jedi_hover = { enabled = true },
+        jedi_references = { enabled = true },
+
+        pycodestyle = { enabled = false },
+        yapf = { enabled = false },
+        autopep8 = { enabled = false },
+      },
+    },
+  },
+})
 
 lspconfig.elixirls.setup({})
 
@@ -74,7 +110,7 @@ lspconfig.lua_ls.setup({
 
 -- require 'lspconfig'.solidity_ls.setup {}
 
-lspconfig.solidity_ls_nomicfoundation.setup{}
+lspconfig.solidity_ls_nomicfoundation.setup {}
 
 lspconfig.emmet_language_server.setup({
   filetypes = {
@@ -125,4 +161,4 @@ lspconfig.gopls.setup({
   },
 })
 
-require'lspconfig'.bashls.setup{}
+require 'lspconfig'.bashls.setup {}
