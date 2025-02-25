@@ -161,4 +161,10 @@ lspconfig.gopls.setup({
   },
 })
 
-require 'lspconfig'.bashls.setup {}
+lspconfig.bashls.setup {}
+
+lspconfig["circom-lsp"].setup{}
+
+-- lspconfig.groovyls.setup{
+--     cmd = { "java", "-jar", "$HOME/Source/nvim/groovy-language-server/build/libs/groovy-language-server-all.jar" },
+-- }
