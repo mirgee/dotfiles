@@ -7,6 +7,11 @@ return {
     defaults = {
       -- Default configuration for telescope goes here:
       -- config_key = value,
+      layout_strategy = "vertical",
+      layout_config = {
+        vertical = { width = 0.9 },
+        preview_height = 0.3,
+      },
       mappings = {
         i = {
           -- map actions.which_key to <C-h> (default: <C-/>)
@@ -45,9 +50,13 @@ return {
       -- please take a look at the readme of the extension you want to configure
     },
   },
-  config = function()
+  config = function(_, opts)
+    local telescope = require("telescope")
+    telescope.setup(opts)
+
     local utils = require("telescope.utils")
     local builtin = require("telescope.builtin")
+
 
     vim.keymap.set("n", "<leader>gf", builtin.git_files, {})
     vim.keymap.set("n", "<leader>gc", builtin.git_commits, {})
