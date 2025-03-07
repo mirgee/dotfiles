@@ -55,3 +55,4 @@ desktop.ini
 .iml
 *.sublime-workspace
 .session.vim
+.factorypath
