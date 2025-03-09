@@ -86,7 +86,7 @@ return {
     vim.keymap.set("n", "<leader>fO", builtin.oldfiles, {})
     vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 
-    vim.keymap.set("n", "<leader>wg", function ()
+    vim.keymap.set("n", "<leader>wg", function()
       builtin.live_grep({
         hidden = true
       })
