@@ -63,7 +63,11 @@ return {
     vim.keymap.set("n", "<leader>gb", builtin.git_branches, {})
     vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
 
-    vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+    vim.keymap.set("n", "<leader>ff", function()
+      builtin.find_files({
+        hidden = false,
+      })
+    end, {})
     vim.keymap.set("n", "<leader>fh", function()
       builtin.find_files({
         hidden = true,
