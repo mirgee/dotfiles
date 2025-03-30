@@ -93,3 +93,16 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap("n", '"<C-W>', ":lua InsertCleanSearchRegisterContent()<CR>", { noremap = true, silent = true })
+
+-- Toggle diagnostics
+vim.g["diagnostics_active"] = true
+function Toggle_diagnostics()
+    if vim.g.diagnostics_active then
+        vim.g.diagnostics_active = false
+        vim.diagnostic.enable(false)
+    else
+        vim.g.diagnostics_active = true
+        vim.diagnostic.enable(true)
+    end
+end
+vim.api.keymap.set('n', '<leader>xd', Toggle_diagnostics, { noremap = true, silent = true, desc = "Toggle vim diagnostics" })
