@@ -6,6 +6,7 @@ source /usr/share/bash-completion/completions/git
 
 export PATH="$PATH:/root/.foundry/bin"
 export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$HOME/go/bin"
 
 export GEM_HOME="$HOME/.gem/ruby/3.0.0"
 export PATH="$GEM_HOME/bin:$PATH"

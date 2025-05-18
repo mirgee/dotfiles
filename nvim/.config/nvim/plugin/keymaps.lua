@@ -105,4 +105,5 @@ function Toggle_diagnostics()
         vim.diagnostic.enable(true)
     end
 end
-vim.api.keymap.set('n', '<leader>xd', Toggle_diagnostics, { noremap = true, silent = true, desc = "Toggle vim diagnostics" })
+
+vim.api.nvim_set_keymap('n', '<leader>xd', ":lua Toggle_diagnostics", { noremap = true, silent = true, desc = "Toggle vim diagnostics" })
