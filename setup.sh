@@ -33,5 +33,6 @@ stow_files "$ENVIRONMENT"
 stow_files "git"
 stow_files "nvim"
 stow_files "tmux"
+stow_files "ripgrep"
 
 echo "Dotfiles setup complete for the $ENVIRONMENT environment."
